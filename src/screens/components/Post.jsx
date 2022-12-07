@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Post() {
+export default function Post(post) {
   return (
     <View
       style={{
@@ -29,14 +29,10 @@ export default function Post() {
           paddingLeft: 12,
         }}
       >
-        <Avatar
-          size={60}
-          rounded
-          source={{ uri: "https://randomuser.me/api/portraits/men/34.jpg" }}
-        />
+        <Avatar size={60} rounded source={{ uri: post.data.avatar }} />
         <View style={{ flexDirection: "column", marginLeft: 8 }}>
-          <Text style={styles.titleText}>Thierry Henry</Text>
-          <Text> 20 Nov .</Text>
+          <Text style={styles.titleText}>{post.data.user}</Text>
+          <Text> {post.data.date} .</Text>
         </View>
         <Ionicons
           name="ellipsis-vertical"
@@ -50,11 +46,11 @@ export default function Post() {
           paddingBottom: 4,
         }}
       >
-        Caption !!!
+        {post.data.caption}
       </Text>
       <Image
         source={{
-          uri: "https://cdnmedia.baotintuc.vn/Upload/c2tvplmdloSDblsn03qN2Q/files/2022/12/04/VDH/Messi-world-cup-2022-argentina-4122022.jpg",
+          uri: post.data.content,
         }}
         style={{ height: 300 }}
       />
@@ -70,9 +66,11 @@ export default function Post() {
           name="like1"
           style={{ color: "blue", fontSize: 16, paddingLeft: 8 }}
         >
-          <Text style={{ fontSize: 13 }}>16.000</Text>
+          <Text style={{ fontSize: 13 }}>{post.data.like}</Text>
         </AntDesign>
-        <Text style={{ fontSize: 14, paddingRight: 8 }}>345 comments</Text>
+        <Text style={{ fontSize: 14, paddingRight: 8 }}>
+          {post.data.comment} comments
+        </Text>
       </View>
       <Divider
         style={{
