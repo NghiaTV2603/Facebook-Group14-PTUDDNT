@@ -1,40 +1,29 @@
 import * as React from "react";
 import { Text, View } from "react-native";
-import { Avatar } from "@rneui/themed";
 import { Divider } from "@rneui/base";
+import AddPost from "../newFeed/components/AddPost";
+import Post from "../components/Post";
+import { ScrollView } from "react-native";
 
 export default function NewFeed({ navigation }) {
   return (
-    <View>
-      <View
-        style={{
-          flexDirection: "row",
-          height: 100,
-          alignItems: "center",
-          paddingLeft: 12,
-        }}
-      >
-        <Avatar
-          size={60}
-          rounded
-          source={{ uri: "https://randomuser.me/api/portraits/men/35.jpg" }}
+    <ScrollView style={{width:'100%'}}>
+      <View>
+        <AddPost />
+        <Divider
+          style={{ marginBottom: 16, backgroundColor: "#DCDCDC", height: 1 }}
         />
-        <View
+        <Post />
+        <Divider
           style={{
-            flexDirection: "row",
+            marginBottom: 8,
+            marginTop: 8,
             backgroundColor: "#DCDCDC",
-            height: 36,
-            width: 280,
-            alignItems: "center",
-            paddingLeft: 16,
-            marginLeft: 24,
-            borderRadius: 6,
+            height: 1,
           }}
-        >
-          <Text style={{ color: "#696969" }}>What's on your mind ?</Text>
-        </View>
+        />
+        <Post />
       </View>
-      <Divider style={{ backgroundColor: "#DCDCDC", height: 1 }} />
-    </View>
+    </ScrollView>
   );
 }

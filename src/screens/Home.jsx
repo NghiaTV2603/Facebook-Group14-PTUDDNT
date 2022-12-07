@@ -1,9 +1,10 @@
 import React from "react";
-import NewFeed from "./NewFeed/NewFeed";
+import NewFeed from "../screens/newFeed/NewFeed";
 import Notification from "./notification/Notification";
 import Message from "./message/Message";
 import { Tab, TabView } from "@rneui/themed";
 import Profile from "./profile/Profile";
+import { ScrollView } from "react-native";
 
 function Home() {
   const [index, setIndex] = React.useState(0);
@@ -40,12 +41,13 @@ function Home() {
           icon={{ name: "list", type: "ionicon", color: "white" }}
         />
       </Tab>
+
       <TabView value={index} onChange={setIndex} animationType="spring">
         <TabView.Item style={{ width: "100%" }}>
-          <NewFeed/>
+          <NewFeed />
         </TabView.Item>
         <TabView.Item style={{ width: "100%" }}>
-          <Notification/>
+          <Notification />
         </TabView.Item>
         <TabView.Item style={{ width: "100%" }}>
           <Message />
