@@ -1,10 +1,10 @@
 import React from "react";
-import NewFeed from "../screens/newFeed/NewFeed";
 import Notification from "./notification/Notification";
 import Message from "./message/Message";
 import { Tab, TabView } from "@rneui/themed";
 import Profile from "./profile/Profile";
 import { ScrollView } from "react-native";
+import NewFeed from "./NewFeed/NewFeed";
 
 function Home() {
   const [index, setIndex] = React.useState(0);

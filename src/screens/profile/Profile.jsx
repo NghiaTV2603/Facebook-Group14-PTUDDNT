@@ -1,17 +1,16 @@
 import * as React from "react";
-import { Text, View } from "react-native";
+import {StyleSheet, Text, View} from "react-native";
+import gStyle from "../styles/globalStyle";
+import ProfileAvatar from "./components/ProfileAvatar";
 
-export default function Profile({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text
-        onPress={() => {
-          navigation.navigate("Home");
-        }}
-        style={{ fontSize: 26, fontWeight: "bold" }}
-      >
-        Profile Feed
-      </Text>
-    </View>
-  );
-}
+export default function Profile({navigation}) {
+    return (
+        <View style={gStyle.fullWidth}>
+            <ProfileAvatar/>
+
+        </View>
+    );
+};
+
+
+
