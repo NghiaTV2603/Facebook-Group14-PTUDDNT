@@ -2,11 +2,9 @@ import {StyleSheet} from "react-native";
 
 let gStyle = StyleSheet.create({
     row : {
-        display : "flex",
         flexDirection : "row",
     },
     column : {
-        display : "flex",
         flexDirection : "column",
     },
     flexCenter : {

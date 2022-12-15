@@ -9,36 +9,31 @@ import {useEffect, useState} from "react";
 let styles = StyleSheet.create({
     wallpaper: {
         width: "100%", height: 250,
-    },
-    avatarBorder: {
+    }, avatarBorder: {
         width: 180, height: 180, borderRadius: 25, backgroundColor: "white", padding: 5, position: "relative"
-    },
-    name: {
-        fontSize: 24,
-        fontWeight: "bold",
-    },
-    uploadButton: {
-        width: 35,
-        height: 35,
-        borderRadius: 7,
-        backgroundColor: "#DDDDDD",
-    },
-    avatar: {
-        width: "100%",
-        height: "100%",
-        borderRadius: 25,
+    }, name: {
+        fontSize: 24, fontWeight: "bold",
+    }, uploadButton: {
+        width: 35, height: 35, borderRadius: 7, backgroundColor: "#DDDDDD",
+    }, avatar: {
+        width: "100%", height: "100%", borderRadius: 25,
     }
-
 });
 
+/**
+ *
+ * @param style
+ * @param {function(setStateCallBack)} callBack
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function UploadImageButton({style, callBack}) {
     const uploadImage = async function () {
         return true;
     }
     const uploadImageHandler = async function () {
         let imagePickerOpt = {
-            mediaType: ImagePicker.MediaTypeOptions.Images,
-            quality: 1
+            mediaType: ImagePicker.MediaTypeOptions.Images, quality: 1
         }
         try {
             let result = await ImagePicker.launchImageLibraryAsync(imagePickerOpt);
@@ -53,27 +48,22 @@ function UploadImageButton({style, callBack}) {
     };
 
     let buttonStyle = (style) ? {...styles.uploadButton, ...style} : styles.uploadButton;
-    return (
-        <>
-            <Button
-                containerStyle={buttonStyle}
-                buttonStyle={{backgroundColor: "#DDDDDD"}}
-                onPress={uploadImageHandler}
-            >
-
-
-                <Icon name={"camera"} size={17}/>
-            </Button>
-        </>);
+    return (<>
+        <Button
+            containerStyle={buttonStyle}
+            buttonStyle={{backgroundColor: "#DDDDDD"}}
+            onPress={uploadImageHandler}
+        >
+            <Icon name={"camera"} size={17}/>
+        </Button>
+    </>);
 }
 
 function Avatar({style, avatarUrl, name}) {
     let [avatarUri, setAvatar] = useState(avatarUrl);
     return (<>
         <View style={{
-            ...gStyle.flexCenter,
-            ...gStyle.column,
-            ...style
+            ...gStyle.flexCenter, ...gStyle.column, ...style
         }}>
             <View style={styles.avatarBorder}>
                 <Image
@@ -82,7 +72,9 @@ function Avatar({style, avatarUrl, name}) {
                 />
                 <UploadImageButton
                     style={{position: "absolute", bottom: 15, right: 15}}
-                    callBack={(newImageUri) => {setAvatar(newImageUri)}}
+                    callBack={(newImageUri) => {
+                        setAvatar(newImageUri)
+                    }}
                 />
             </View>
             <Text style={styles.name}>{name}</Text>
@@ -96,14 +88,11 @@ function WallpaperBackground({children, style, backgroundUrl}) {
     }, [backgroundUrl])
     return (<>
         <View style={{
-            ...styles.wallpaper,
-            ...style,
+            ...styles.wallpaper, ...style,
         }}>
             <ImageBackground
                 style={{
-                    ...gStyle.fullHeight,
-                    ...gStyle.fullWidth,
-                    position: "relative"
+                    ...gStyle.fullHeight, ...gStyle.fullWidth, position: "relative"
 
                 }}
                 source={{uri: backgroundUrl}}
@@ -123,20 +112,23 @@ let mockBackgroundUrl = "https://scontent.fhan17-1.fna.fbcdn.net/v/t1.6435-9/186
 export default function ProfileAvatar() {
     let [backgroundUrl, setBackground] = useState(mockBackgroundUrl);
     return (<>
-        <WallpaperBackground backgroundUrl={backgroundUrl}>
-            <Avatar
-                style={{
-                    position: "absolute",
-                    bottom: -100,
-                    left: Dimensions.get("window").width / 2 - 180 / 2,
-                }}
-                avatarUrl={mockImageUrl}
-                name={"Trần Nhật Minh"}
-            />
-            <UploadImageButton
-                style={{position: "absolute", bottom: 15, right: 15}}
-                callBack={(newBackgroundUri) => setBackground(newBackgroundUri)}
-            />
-        </WallpaperBackground>
+        <View style={{
+            height : 349
+        }}>
+            <WallpaperBackground backgroundUrl={backgroundUrl} >
+                <Avatar
+                    style={{
+                        position: "absolute", bottom: -100, left: Dimensions.get("window").width / 2 - 180 / 2,
+                    }}
+                    avatarUrl={mockImageUrl}
+                    name={"Trần Nhật Minh"}
+                />
+                <UploadImageButton
+                    style={{position: "absolute", bottom: 15, right: 15}}
+                    callBack={(newBackgroundUri) => setBackground(newBackgroundUri)}
+                />
+            </WallpaperBackground>
+
+        </View>
     </>);
 }
