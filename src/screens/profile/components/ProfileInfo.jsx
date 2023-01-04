@@ -5,9 +5,9 @@ import Feather from "react-native-vector-icons/Feather";
 let styles = StyleSheet.create({
     container: {
         width: "100%",
-        height: 236,
         paddingHorizontal: 20,
         paddingVertical: 16,
+
     },
     textNormal: {
         fontSize: 18,
@@ -41,9 +41,6 @@ function Info({info, content}) {
 }
 
 export default function ProfileInfo({details}) {
-    console.log("\n\n");
-    console.log(JSON.stringify(details));
-    console.log("\n\n");
     return (
         <>
             <View style={{

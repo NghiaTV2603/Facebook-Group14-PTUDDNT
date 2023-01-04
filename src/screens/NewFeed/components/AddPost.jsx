@@ -79,7 +79,7 @@ export default function AddPost() {
                             <Button containerStyle={{borderRadius:16,}}>Upload File</Button>
                         </View>
                         <TextInput placeholder="What's on your mind ?" multiline style={{fontSize: 18, marginTop: 8}}
-                                   autoFocus/>
+                                   autoFocus={true}/>
                     </View>
                 </ListItem>
             </BottomSheet>

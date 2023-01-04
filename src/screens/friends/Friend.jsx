@@ -1,10 +1,13 @@
-import {Image, StyleSheet} from "react-native";
+import {Image, StyleSheet, Touchable, TouchableHighlight} from "react-native";
 import {View, Text, ScrollView} from "react-native";
 import gStyle from "../styles/globalStyle";
-import {Button} from "@rneui/themed";
+import {BottomSheet, Button} from "@rneui/themed";
 import {useState} from "react";
 import friendMock from "./FriendMock";
 import * as React from "react";
+import Profile from "../profile/Profile";
+import {mergeOptions} from "@babel/core/lib/config/util";
+import {configureStore} from "@reduxjs/toolkit";
 
 const FriendConstant = {
     OPTION: {
@@ -54,7 +57,16 @@ function Option({callBack, ...props}) {
     </>);
 }
 
-function FriendComponent({/** FriendModel */ data, option, ...props}) {
+/**
+ * Thành phần để hiển thị một tab friend trong trang Friend
+ * @param {FriendModel} data
+ * @param {FriendConstant.OPTION} option
+ * @param {function} showFriendInfoCallback
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
+function FriendComponent({data, option, showFriendInfoCallback, ...props}) {
     function confirmButtonHandler() {
         // TODO : Thực hiện call API xác nhận kết bạn ở đây
     }
@@ -63,16 +75,28 @@ function FriendComponent({/** FriendModel */ data, option, ...props}) {
         // TODO : Thực hiện call API hủy kết bạn ở chỗ này
     }
 
-    return (<>
+    function showFriendInfo() {
+        if (showFriendInfoCallback) {
+            showFriendInfoCallback(data.uid);
+            return;
+        }
+        console.log("Show Friend Info Callback is null");
+    }
+
+    return <>
         <View style={{
             height: 90, width: "100%", ...gStyle.row, marginBottom: 10, position: "relative",
         }}>
-            <Image
-                style={{
-                    height: "100%", aspectRatio: 1, borderRadius: 15,
-                }}
-                source={{uri: data.avatarUrl}}
-            />
+            <TouchableHighlight onPress={showFriendInfo} style={{
+                borderRadius: 15
+            }}>
+                <Image
+                    style={{
+                        height: "100%", aspectRatio: 1, borderRadius: 15,
+                    }}
+                    source={{uri: data.avatarUrl}}
+                />
+            </TouchableHighlight>
             <View style={{
                 flex: 1, ...gStyle.column,
                 alignItems: "flex-start",
@@ -104,7 +128,7 @@ function FriendComponent({/** FriendModel */ data, option, ...props}) {
 
             </View>
         </View>
-    </>);
+    </>;
 }
 
 function TitleBar() {
@@ -132,10 +156,24 @@ function TitleBar() {
 
 
 export default function Friend() {
-    const [option, setOption] = useState(FriendConstant.OPTION.SUGGEST)
+    const [option, setOption] = useState(FriendConstant.OPTION.SUGGEST);
+    const [isShowFriendProfile, setShowFriendProfile] = useState(false);
+    const [friendInfo, setFriendInfo] = useState(null);
 
     function handleChangeOption(/** FriendConstant.OPTION */ value) {
         setOption(value);
+    }
+
+    /**
+     * @param {string} uid
+     */
+    function showFriendProfile(uid) {
+        let selectedInfo = friendMock[option].find((/** FriendModel */ element) => element.uid === uid);
+        if (selectedInfo) {
+            console.log(JSON.stringify(selectedInfo));
+            setFriendInfo(selectedInfo);
+            setShowFriendProfile(true);
+        }
     }
 
     return (<View style={{
@@ -149,8 +187,38 @@ export default function Friend() {
             marginTop: 20,
         }}>
             {friendMock[option].map((element) => <FriendComponent data={element} key={element.uid}
-                                                                  option={option}/>)}
+                                                                  option={option}
+                                                                  showFriendInfoCallback={showFriendProfile}/>)}
         </ScrollView>
+        <BottomSheet isVisible={isShowFriendProfile}>
+            <View style={{
+                backgroundColor: "white",
+                position : "relative"
+            }}>
+                <ScrollView
+                    stickyHeaderIndices={[0]}
+                >
+                    <Button
+                        key={"BUTTON 1"}
+                        icon={{
+                            name: "arrow-left", type: "font-awesome", size: 20, color: "black",
+                        }}
+                        title={""}
+                        onPress={() => setShowFriendProfile(false)}
+                        buttonStyle={{
+                            backgroundColor: "#EEEEEE",
+                        }}
+                        containerStyle={{
+                            position : "absolute",
+                            zIndex : 1000,
+                            top : 10,
+                            left : 10,
+                        }}
+                    />
+                    <Profile key={"PROFILE"}/>
+                </ScrollView>
+            </View>
+        </BottomSheet>
     </View>);
 }
 
