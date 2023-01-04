@@ -1,13 +1,13 @@
 import * as React from "react";
 import {Text, View} from "react-native";
 import {Divider} from "@rneui/base";
-import AddPost from "../newFeed/components/AddPost";
+import AddPost from "../NewFeed/components/AddPost";
 import Post from "../components/Post";
 import {ScrollView} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
 import {postNewFeedSelector} from "../../app/selector";
 
-export default function NewFeed() {
+export default function newFeed() {
     const posts = useSelector(postNewFeedSelector);
     return (
         <ScrollView style={{width: "100%"}}>

@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const newfeedSlice = createSlice({
-    name:'postNewFeed',
+const newFeedSlice = createSlice({
+    name:'postnewFeed',
     initialState:
         [
             {
@@ -46,4 +46,4 @@ const newfeedSlice = createSlice({
     },
 })
 
-export default newfeedSlice;
+export default newFeedSlice;
