@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View, Image, Dimensions, ImageBackground} from "react-native";
 
-import gStyle from "../../styles/globalStyle";
+import gStyle from "../../../styles/globalStyle";
 import * as React from "react";
 import {Button, Icon} from "@rneui/base";
 import * as ImagePicker from "expo-image-picker";
@@ -9,13 +9,17 @@ import {useEffect, useState} from "react";
 let styles = StyleSheet.create({
     wallpaper: {
         width: "100%", height: 250,
-    }, avatarBorder: {
+    },
+    avatarBorder: {
         width: 180, height: 180, borderRadius: 25, backgroundColor: "white", padding: 5, position: "relative"
-    }, name: {
+    },
+    name: {
         fontSize: 24, fontWeight: "bold",
-    }, uploadButton: {
+    },
+    uploadButton: {
         width: 35, height: 35, borderRadius: 7, backgroundColor: "#DDDDDD",
-    }, avatar: {
+    },
+    avatar: {
         width: "100%", height: "100%", borderRadius: 25,
     }
 });
@@ -43,7 +47,7 @@ function UploadImageButton({style, callBack}) {
                 // TODO : UPLOAD IMAGE TO SERVER
             }
         } catch (error) {
-            console.log(JSON.stringify(error));
+            (JSON.stringify(error));
         }
     };
 
@@ -84,7 +88,7 @@ function Avatar({style, avatarUrl, name}) {
 
 function WallpaperBackground({children, style, backgroundUrl}) {
     useEffect(() => {
-        console.log(backgroundUrl);
+        (backgroundUrl);
     }, [backgroundUrl])
     return (<>
         <View style={{
@@ -113,9 +117,9 @@ export default function ProfileAvatar() {
     let [backgroundUrl, setBackground] = useState(mockBackgroundUrl);
     return (<>
         <View style={{
-            height : 349
+            height: 349
         }}>
-            <WallpaperBackground backgroundUrl={backgroundUrl} >
+            <WallpaperBackground backgroundUrl={backgroundUrl}>
                 <Avatar
                     style={{
                         position: "absolute", bottom: -100, left: Dimensions.get("window").width / 2 - 180 / 2,

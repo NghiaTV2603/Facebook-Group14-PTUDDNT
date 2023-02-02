@@ -2,6 +2,7 @@ import * as React from "react";
 import { Text, View } from "react-native";
 import { Divider } from "@rneui/base";
 import Post from "../components/Post";
+import AddPost from "./components/AddPost";
 import { ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import {postNewFeedSelector} from "../../app/selector";

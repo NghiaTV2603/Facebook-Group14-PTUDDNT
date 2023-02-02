@@ -1,5 +1,5 @@
 import {Text, View, StyleSheet} from "react-native";
-import gStyle from "../../styles/globalStyle";
+import gStyle from "../../../styles/globalStyle";
 import Feather from "react-native-vector-icons/Feather";
 
 let styles = StyleSheet.create({
@@ -41,9 +41,9 @@ function Info({info, content}) {
 }
 
 export default function ProfileInfo({details}) {
-    console.log("\n\n");
-    console.log(JSON.stringify(details));
-    console.log("\n\n");
+    ("\n\n");
+    (JSON.stringify(details));
+    ("\n\n");
     return (
         <>
             <View style={{

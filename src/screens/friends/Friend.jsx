@@ -1,13 +1,15 @@
 import {Image, StyleSheet, Touchable, TouchableHighlight} from "react-native";
 import {View, Text, ScrollView} from "react-native";
-import gStyle from "../styles/globalStyle";
+import gStyle from "../../styles/globalStyle";
 import {BottomSheet, Button} from "@rneui/themed";
 import {useState} from "react";
 import friendMock from "./FriendMock";
 import * as React from "react";
 import Profile from "../profile/Profile";
+import TitleBar from "../share_components/TitleBar";
 import {mergeOptions} from "@babel/core/lib/config/util";
 import {configureStore} from "@reduxjs/toolkit";
+import BottomSheetProfile from "../share_components/BottomSheetProfile";
 
 const FriendConstant = {
     OPTION: {
@@ -18,10 +20,6 @@ const FriendConstant = {
 const styles = StyleSheet.create({
     fullScreen: {
         width: "100%", height: "100%", paddingHorizontal: 10,
-    }, titleBar: {
-        height: 65, width: "100%",
-    }, titleText: {
-        fontSize: 32, fontWeight: "bold",
     }, buttonStyle: {
         backgroundColor: "#00A3FF"
     }, buttonContainerStyle: {
@@ -31,7 +29,7 @@ const styles = StyleSheet.create({
 
 function Option({callBack, ...props}) {
     function runCallBack(/** FriendConstant.OPTION*/ value) {
-        console.log(value);
+        (value);
         if (callBack !== undefined) {
             callBack(value);
         }
@@ -80,7 +78,7 @@ function FriendComponent({data, option, showFriendInfoCallback, ...props}) {
             showFriendInfoCallback(data.uid);
             return;
         }
-        console.log("Show Friend Info Callback is null");
+        ("Show Friend Info Callback is null");
     }
 
     return <>
@@ -113,8 +111,9 @@ function FriendComponent({data, option, showFriendInfoCallback, ...props}) {
                     ...gStyle.row, width: "100%", justifyContent: "space-between"
                 }}>
                     {option === FriendConstant.OPTION.SUGGEST ? <>
-                        <Button title={"Confirm"} buttonStyle={styles.buttonStyle}
-                                containerStyle={{flex: 10, borderRadius: 10}}/>
+                        <Button
+                            title={"Confirm"} buttonStyle={styles.buttonStyle}
+                            containerStyle={{flex: 10, borderRadius: 10}}/>
                         <View style={{flex: 1}}/>
                         <Button title={"Cancel"} buttonStyle={{backgroundColor: "#EEEEEE"}}
                                 containerStyle={{flex: 10, borderRadius: 10}}
@@ -122,7 +121,6 @@ function FriendComponent({data, option, showFriendInfoCallback, ...props}) {
                     </> : <Button title={"Cancel"} buttonStyle={{backgroundColor: "#EEEEEE"}}
                                   containerStyle={{width: "100%", borderRadius: 10}}
                                   titleStyle={{color: 'black'}}/>
-
                     }
                 </View>
 
@@ -130,30 +128,6 @@ function FriendComponent({data, option, showFriendInfoCallback, ...props}) {
         </View>
     </>;
 }
-
-function TitleBar() {
-    return (<>
-        <View style={{
-            ...styles.titleBar, ...gStyle.row, ...gStyle.flexCenter, justifyContent: "space-between",
-        }}>
-            <Text style={styles.titleText}>Friend</Text>
-            <Button
-                icon={{
-                    name: "search", type: "font-awesome", size: 20, color: "black",
-                }}
-                buttonStyle={{
-                    backgroundColor: "#EEEEEE",
-                }}
-                containerStyle={{
-                    height: 40, borderRadius: 10,
-                }}
-                title={" "}
-            ></Button>
-
-        </View>
-    </>);
-}
-
 
 export default function Friend() {
     const [option, setOption] = useState(FriendConstant.OPTION.SUGGEST);
@@ -170,7 +144,7 @@ export default function Friend() {
     function showFriendProfile(uid) {
         let selectedInfo = friendMock[option].find((/** FriendModel */ element) => element.uid === uid);
         if (selectedInfo) {
-            console.log(JSON.stringify(selectedInfo));
+            (JSON.stringify(selectedInfo));
             setFriendInfo(selectedInfo);
             setShowFriendProfile(true);
         }
@@ -179,46 +153,30 @@ export default function Friend() {
     return (<View style={{
         ...styles.fullScreen,
     }}>
-        <TitleBar/>
+        <TitleBar
+            title={"Friend"}
+            searchCallback={null}
+        />
         <Option
             callBack={handleChangeOption}
         />
         <ScrollView style={{
             marginTop: 20,
         }}>
-            {friendMock[option].map((element) => <FriendComponent data={element} key={element.uid}
-                                                                  option={option}
-                                                                  showFriendInfoCallback={showFriendProfile}/>)}
+            {friendMock[option].map((element) =>
+                <FriendComponent
+                    data={element}
+                    key={element.uid}
+                    option={option}
+                    showFriendInfoCallback={showFriendProfile}
+                />
+            )}
         </ScrollView>
-        <BottomSheet isVisible={isShowFriendProfile}>
-            <View style={{
-                backgroundColor: "white",
-                position : "relative"
-            }}>
-                <ScrollView
-                    stickyHeaderIndices={[0]}
-                >
-                    <Button
-                        key={"BUTTON 1"}
-                        icon={{
-                            name: "arrow-left", type: "font-awesome", size: 20, color: "black",
-                        }}
-                        title={""}
-                        onPress={() => setShowFriendProfile(false)}
-                        buttonStyle={{
-                            backgroundColor: "#EEEEEE",
-                        }}
-                        containerStyle={{
-                            position : "absolute",
-                            zIndex : 1000,
-                            top : 10,
-                            left : 10,
-                        }}
-                    />
-                    <Profile key={"PROFILE"}/>
-                </ScrollView>
-            </View>
-        </BottomSheet>
+        <BottomSheetProfile
+            isVisible={isShowFriendProfile}
+            uid={"TEST_PROFILE"}
+            closeCallback={() => setShowFriendProfile(false)}
+        />
     </View>);
 }
 

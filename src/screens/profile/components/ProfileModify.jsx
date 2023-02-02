@@ -1,6 +1,6 @@
 import {Text, View, StyleSheet} from "react-native";
 import {Button, LinearG} from "@rneui/base";
-import gStyle from "../../styles/globalStyle";
+import gStyle from "../../../styles/globalStyle";
 import Feather from "react-native-vector-icons/Feather";
 import {LinearGradient} from "expo-linear-gradient";
 import {useState} from "react";
@@ -23,7 +23,7 @@ function LinearButton({children, containerStyle, buttonStyle, buttonHandler}) {
     let [isLoading, setLoading] = useState(false);
     if (!buttonHandler) {
         buttonHandler = () => {
-            console.log("Click")
+            ("Click")
         }
     }
     return (<Button

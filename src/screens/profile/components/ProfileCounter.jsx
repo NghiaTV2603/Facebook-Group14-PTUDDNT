@@ -1,5 +1,5 @@
 import {StyleSheet, View, Text} from "react-native";
-import gStyle from "../../styles/globalStyle";
+import gStyle from "../../../styles/globalStyle";
 import {LinearGradient} from "expo-linear-gradient";
 
 const styles = StyleSheet.create({

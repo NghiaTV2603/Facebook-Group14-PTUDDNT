@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Dimensions, ScrollView, StyleSheet, Text, View} from "react-native";
-import gStyle from "../styles/globalStyle";
+import gStyle from "../../styles/globalStyle";
 import ProfileAvatar from "./components/ProfileAvatar";
 import ProfileModify from "./components/ProfileModify";
 import ProfileCounter from "./components/ProfileCounter";
@@ -13,6 +13,10 @@ import {postNewFeedSelector} from "../../app/selector";
 import {Divider} from "@rneui/base";
 
 export default function Profile({navigation}) {
+    const handleGetUserInfo = function() {
+        // TODO : Thực hiện gọi API lấy thông tin người dùng ở đây
+    }
+
     const data = useSelector(postNewFeedSelector);
 
     return (
