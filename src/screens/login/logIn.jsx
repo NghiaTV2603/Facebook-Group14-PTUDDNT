@@ -1,45 +1,51 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {StyleSheet, Text, TextInput, View, Button} from 'react-native'
+import {useDispatch, useSelector} from "react-redux";
+import {loginWithPhoneNumber} from "./authThunk";
+import {authSelector} from "../../app/selector";
 
-export default class Login extends React.Component {
-    state = {email: '', password: '', errorMessage: null}
-    handleLogin = () => {
-        // TODO: Firebase stuff...
-        console.log('handleLogin')
+export default function Login(props) {
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const dispatch = useDispatch();
+    const handleLogin = function() {
+        dispatch(loginWithPhoneNumber({phoneNumber : phoneNumber, password : password}));
     }
 
-    render() {
-        return (
-            <View style={styles.container}>
-                <Text>Login</Text>
-                {this.state.errorMessage &&
-                    <Text style={{color: 'red'}}>
-                        {this.state.errorMessage}
-                    </Text>}
-                <TextInput
-                    style={styles.textInput}
-                    autoCapitalize="none"
-                    placeholder="Email"
-                    onChangeText={email => this.setState({email})}
-                    value={this.state.email}
-                />
-                <TextInput
-                    secureTextEntry
-                    style={styles.textInput}
-                    autoCapitalize="none"
-                    placeholder="Password"
-                    onChangeText={password => this.setState({password})}
-                    value={this.state.password}
-                />
-                <Button title="Login" onPress={this.handleLogin}/>
-                <Button
-                    title="Don't have an account? Sign Up"
-                    onPress={() => this.props.navigation.navigate('SignUp')}
-                />
-            </View>
-        )
-    }
+    return (
+        <View style={styles.container}>
+            <Text>Login</Text>
+            {errorMessage &&
+                <Text style={{color: 'red'}}>
+                    {errorMessage}
+                </Text>}
+            <TextInput
+                style={styles.textInput}
+                autoCapitalize="none"
+                placeholder="Email"
+                onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
+                value={phoneNumber}
+            />
+            <TextInput
+                secureTextEntry
+                style={styles.textInput}
+                autoCapitalize="none"
+                placeholder="Password"
+                onChangeText={password => setPassword(password)}
+                value={password}
+            />
+            <Button title="Login" onPress={handleLogin}/>
+            <Button
+                title="Don't have an account? Sign Up"
+                onPress={() => {
+                    ("NAVIGATE TO SIGN UP PAGE");
+                }}
+            />
+        </View>
+    )
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
