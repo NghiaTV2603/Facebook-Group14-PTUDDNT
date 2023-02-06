@@ -1,40 +1,40 @@
 import React from 'react'
 import {StyleSheet, Text, TextInput, View, Button} from 'react-native'
 
-export default class SignUp extends React.Component {
+export default class Login extends React.Component {
     state = {email: '', password: '', errorMessage: null}
-    handleSignUp = () => {
+    handleLogin = () => {
         // TODO: Firebase stuff...
-        console.log('handleSignUp')
+        console.log('handleLogin')
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <Text>Sign Up</Text>
+                <Text>Login</Text>
                 {this.state.errorMessage &&
                     <Text style={{color: 'red'}}>
                         {this.state.errorMessage}
                     </Text>}
                 <TextInput
-                    placeholder="Email"
-                    autoCapitalize="none"
                     style={styles.textInput}
+                    autoCapitalize="none"
+                    placeholder="Email"
                     onChangeText={email => this.setState({email})}
                     value={this.state.email}
                 />
                 <TextInput
                     secureTextEntry
-                    placeholder="Password"
-                    autoCapitalize="none"
                     style={styles.textInput}
+                    autoCapitalize="none"
+                    placeholder="Password"
                     onChangeText={password => this.setState({password})}
                     value={this.state.password}
                 />
-                <Button title="Sign Up" onPress={this.handleSignUp}/>
+                <Button title="Login" onPress={this.handleLogin}/>
                 <Button
-                    title="Already have an account? Login"
-                    onPress={() => this.props.navigation.navigate('Login')}
+                    title="Don't have an account? Sign Up"
+                    onPress={() => this.props.navigation.navigate('SignUp')}
                 />
             </View>
         )

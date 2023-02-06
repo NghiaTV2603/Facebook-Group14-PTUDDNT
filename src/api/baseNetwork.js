@@ -1,7 +1,4 @@
 import {BASE_API_SERVER} from "../app/constants";
-import {useSelector} from "react-redux";
-import {authSelector} from "../app/selector";
-
 
 /**
  * @param {string} api
@@ -11,16 +8,8 @@ import {authSelector} from "../app/selector";
  */
 export const fetchingData = function (api, method, payload) {
     let apiUrl = BASE_API_SERVER;
-    // let authToken = authInfo.token;
     apiUrl += api;
     let header;
-    // if (TOKEN !== null) {
-    //     header = {
-    //         Accept: 'application/json',
-    //         'Content-Type': 'application/json',
-    //         'Authentication': 'Bearer ' + TOKEN
-    //     }
-    // } else {
     header = {
         Accept: 'application/json',
         'Content-Type': 'application/json',

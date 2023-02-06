@@ -62,7 +62,7 @@ export default function AddPost() {
                         }}>
                             <AntDesign name='close' style={{fontSize: 24}} onPress={() => setIsVisible(false)}/>
                             <Text style={{fontSize: 24, fontWeight: "bold"}}>Create Post</Text>
-                            <Button containerStyle={{borderRadius:8,}}>Post</Button>
+                            <Button containerStyle={{borderRadius: 8,}}>Post</Button>
                         </View>
                         <Divider style={{
                             backgroundColor: "#DCDCDC",
@@ -71,12 +71,12 @@ export default function AddPost() {
                             marginBottom: 15,
                         }}
                         />
-                        <View style={{flexDirection: 'row', alignItems: 'center',justifyContent:'space-between'}}>
+                        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
                             <View style={{flexDirection: 'row', alignItems: 'center'}}>
                                 <Avatar size={48} rounded source={{uri: authenUser.avatar}}/>
                                 <Text style={{fontSize: 22, marginLeft: 8,}}>{authenUser.username}</Text>
                             </View>
-                            <Button containerStyle={{borderRadius:16,}}>Upload File</Button>
+                            <Button containerStyle={{borderRadius: 16,}}>Upload File</Button>
                         </View>
                         <TextInput placeholder="What's on your mind ?" multiline style={{fontSize: 18, marginTop: 8}}
                                    autoFocus={true}/>

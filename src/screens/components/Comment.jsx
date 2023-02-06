@@ -38,6 +38,7 @@ export default function Comment() {
                     <ScrollView style={{width: "100%"}}>
                         {commentsPost.map((cmt) => (
                             <View
+                                key={cmt.id}
                                 style={{
                                     flexDirection: "row",
                                     width: 380,

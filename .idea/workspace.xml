@@ -5,32 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="356cb551-2da5-4d16-83d1-2f1860fa628e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api/authApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/baseNetwork.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/login/authSlice.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/login/authThunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/share_components/BottomSheetProfile.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/share_components/TitleBar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/screens/login/logIn.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/screens/message/messageSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/constants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/baseNetwork.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/baseNetwork.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/selector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/selector.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Home.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/NewFeed/NewFeed.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/NewFeed/NewFeed.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/friends/Friend.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/Friend.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/login/logIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/login/signUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/SignUp.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/notification/MockData.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/notification/NotiConst.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/notification/Notification.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/profile/components/ProfileAvatar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/components/ProfileAvatar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/profile/components/ProfileCounter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/components/ProfileCounter.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/profile/components/ProfileInfo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/components/ProfileInfo.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/profile/components/ProfileModify.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/components/ProfileModify.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/styles/globalStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/globalStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/NewFeed/components/AddPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/NewFeed/components/AddPost.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/NewFeed/newfeedSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/NewFeed/newfeedSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/components/Comment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/components/Comment.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/components/postSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/components/postSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/login/SignUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/SignUp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/message/Message.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/message/Message.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +88,9 @@
       <workItem from="1675101049063" duration="726000" />
       <workItem from="1675319595274" duration="923000" />
       <workItem from="1675320543010" duration="5827000" />
-      <workItem from="1675326515796" duration="8875000" />
+      <workItem from="1675326515796" duration="9685000" />
+      <workItem from="1675498432954" duration="2038000" />
+      <workItem from="1675692432263" duration="940000" />
     </task>
     <servers />
   </component>
