@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, Image, Dimensions, ImageBackground} from "react-native";
+import {StyleSheet, Text, View, Image, Dimensions, ImageBackground, AsyncStorage} from "react-native";
 
 import gStyle from "../../../styles/globalStyle";
 import * as React from "react";
@@ -115,6 +115,10 @@ let mockBackgroundUrl = "https://scontent.fhan17-1.fna.fbcdn.net/v/t1.6435-9/186
 
 export default function ProfileAvatar() {
     let [backgroundUrl, setBackground] = useState(mockBackgroundUrl);
+    useEffect(async () => {
+        let apiToken = await AsyncStorage.getItem("token");
+        console.log(apiToken);
+    },[])
     return (<>
         <View style={{
             height: 349

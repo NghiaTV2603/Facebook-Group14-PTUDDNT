@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Dimensions, ScrollView, StyleSheet, Text, View} from "react-native";
+import {ScrollView, View} from "react-native";
 import gStyle from "../../styles/globalStyle";
 import ProfileAvatar from "./components/ProfileAvatar";
 import ProfileModify from "./components/ProfileModify";
@@ -8,16 +8,19 @@ import MockData from "./MockData";
 import ProfileInfo from "./components/ProfileInfo";
 import AddPost from "../NewFeed/components/AddPost";
 import Post from "../components/Post";
-import {useSelector} from "react-redux";
-import {postNewFeedSelector} from "../../app/selector";
+import {useDispatch, useSelector} from "react-redux";
+import {postNewFeedSelector, userSeletor} from "../../app/selector";
 import {Divider} from "@rneui/base";
+import {getUserInfo} from "./userThunk";
 
 export default function Profile({navigation}) {
+    const dispatch = useDispatch();
     const handleGetUserInfo = function() {
+        dispatch(getUserInfo());
         // TODO : Thực hiện gọi API lấy thông tin người dùng ở đây
     }
-
     const data = useSelector(postNewFeedSelector);
+    const userData = useSelector(userSeletor);
 
     return (
         <View style={gStyle.fullWidth}>

@@ -7,7 +7,7 @@ import NewFeed from "./NewFeed/NewFeed";
 import Friend from "./friends/Friend";
 import {useSelector} from "react-redux";
 import {authSelector} from "../app/selector";
-import Login from "./login/Login";
+import Login from "./login/logIn";
 
 function Home() {
     const [index, setIndex] = React.useState(0);

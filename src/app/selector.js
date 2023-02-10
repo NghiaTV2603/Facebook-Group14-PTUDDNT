@@ -5,3 +5,5 @@ export const commentPostSelector = (state) => state.post.comment;
 
 export const authSelector = (state) => state.auth;
 export const dataUserMessage = (state) => state.message;
+
+export const userSeletor = (state) => state.user;

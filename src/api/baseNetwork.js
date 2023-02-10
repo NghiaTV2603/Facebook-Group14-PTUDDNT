@@ -1,4 +1,5 @@
 import {BASE_API_SERVER} from "../app/constants";
+import {AsyncStorage} from "react-native";
 
 /**
  * @param {string} api
@@ -6,7 +7,7 @@ import {BASE_API_SERVER} from "../app/constants";
  * @param {Object} payload
  * @returns {Promise<Response>}
  */
-export const fetchingData = function (api, method, payload) {
+export const fetchingData = async function (api, method, payload) {
     let apiUrl = BASE_API_SERVER;
     apiUrl += api;
     let header;
@@ -14,7 +15,14 @@ export const fetchingData = function (api, method, payload) {
         Accept: 'application/json',
         'Content-Type': 'application/json',
     }
-    // }
+    let token = await AsyncStorage.getItem("token");
+    console.log("TOKEN = " + token);
+    if (token) {
+        header = {
+            ...header,
+            "Authorization" : "Bearer " + token
+        }
+    }
 
     return fetch(apiUrl, {
         method: method, headers: header, body: JSON.stringify(payload),
