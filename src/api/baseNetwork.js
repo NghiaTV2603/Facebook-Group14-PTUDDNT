@@ -16,17 +16,24 @@ export const fetchingData = async function (api, method, payload) {
         'Content-Type': 'application/json',
     }
     let token = await AsyncStorage.getItem("token");
-    console.log("TOKEN = " + token);
+    console.log("[baseNetwork] TOKEN = " + token);
     if (token) {
         header = {
             ...header,
-            "Authorization" : "Bearer " + token
+            Authorization : "Bearer " + token
         }
     }
 
-    return fetch(apiUrl, {
-        method: method, headers: header, body: JSON.stringify(payload),
-    });
+    let init = {}
+    if (payload !== null) {
+        init = {
+            method: method, headers: header, body: JSON.stringify(payload)
+        }
+    } else {
+        init = {method: method, headers: header}
+    }
+
+    return fetch(apiUrl, init);
 };
 
 /** @typedef {string} EnumMethodType */

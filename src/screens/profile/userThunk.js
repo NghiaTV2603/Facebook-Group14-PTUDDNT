@@ -1,6 +1,10 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {UserApi} from "../../api/userApi";
 
+const userThunkLog = function(where, message) {
+    console.log("[UserThunk] - " + where + " - " + message)
+}
+
 const editUserInfo = createAsyncThunk(
     'user/editUserInfo',
     async ({
@@ -23,16 +27,13 @@ const editUserInfo = createAsyncThunk(
                 country
             );
             if (response.status !== 200) {
-                console.log("Something wrong when request with code : " + response.status);
+               userThunkLog('editUserInfo', "Something wrong when request with code : " + response.status);
             }
             let json = await response.json();
-            console.log("\n\n");
-            console.log("[UserApi] - edit user response");
-            console.log(JSON.stringify(json));
             return json;
             // return await response.json();
         } catch (err) {
-            console.log(JSON.stringify(err));
+            userThunkLog('editUserInfo/err', JSON.stringify(err));
         }
     }
 )
@@ -43,16 +44,13 @@ const getUserInfoById = createAsyncThunk(
         try {
             let response = await UserApi.showWithId(userId);
             if (response.status !== 200) {
-                console.log("Something wrong when request with code : " + response.status);
+               userThunkLog("getUserInfoById", "Something wrong when request with code : " + response.status);
             }
             let json = await response.json();
-            console.log("\n\n");
-            console.log("[UserApi] - show user info with id response");
-            console.log(JSON.stringify(json));
             return json;
             // return await response.json();
         } catch (err) {
-            console.log(JSON.stringify(err));
+            userThunkLog("getUserInfoById/err", JSON.stringify(err));
         }
 
     }
@@ -60,27 +58,25 @@ const getUserInfoById = createAsyncThunk(
 )
 
 const getUserInfo = createAsyncThunk(
-    'user/getUserInfoById',
+    'user/getUserInfo',
     async () => {
         try {
             let response = await UserApi.show();
             if (response.status !== 200) {
-                console.log("Something wrong when request with code : " + response.status);
+                userThunkLog("getUserInfo", "Something wrong when request with code : " + response.status);
             }
             let json = await response.json();
-            console.log("\n\n");
-            console.log("[UserApi] - show user info response");
-            console.log(JSON.stringify(json));
+            userThunkLog("getUserInfo", "JSON data + " + JSON.stringify(json));
             return json;
-            // return await response.json();
         } catch (err) {
-            console.log(JSON.stringify(err));
+            userThunkLog("getUserInfo/err", JSON.stringify(err));
         }
     }
 )
 
 export {
     editUserInfo,
+    getUserInfo,
     getUserInfoById,
-    getUserInfo
+    userThunkLog
 }

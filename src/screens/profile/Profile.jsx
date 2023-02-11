@@ -12,15 +12,20 @@ import {useDispatch, useSelector} from "react-redux";
 import {postNewFeedSelector, userSeletor} from "../../app/selector";
 import {Divider} from "@rneui/base";
 import {getUserInfo} from "./userThunk";
+import {useEffect} from "react";
 
 export default function Profile({navigation}) {
     const dispatch = useDispatch();
-    const handleGetUserInfo = function() {
+    const handleGetUserInfo = async function() {
         dispatch(getUserInfo());
         // TODO : Thực hiện gọi API lấy thông tin người dùng ở đây
     }
     const data = useSelector(postNewFeedSelector);
     const userData = useSelector(userSeletor);
+
+    useEffect(async () => {
+        await handleGetUserInfo();
+    }, [])
 
     return (
         <View style={gStyle.fullWidth}>

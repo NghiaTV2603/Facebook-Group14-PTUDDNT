@@ -4,6 +4,8 @@ import gStyle from "../../../styles/globalStyle";
 import Feather from "react-native-vector-icons/Feather";
 import {LinearGradient} from "expo-linear-gradient";
 import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {getUserInfo} from "../userThunk";
 
 let styles = StyleSheet.create({
     buttonContainer: {
@@ -21,8 +23,11 @@ let styles = StyleSheet.create({
 
 function LinearButton({children, containerStyle, buttonStyle, buttonHandler}) {
     let [isLoading, setLoading] = useState(false);
+    let dispatch = useDispatch();
     if (!buttonHandler) {
         buttonHandler = () => {
+            dispatch(getUserInfo());
+
             ("Click")
         }
     }
@@ -74,8 +79,13 @@ export default function ProfileModify({ isMyProfile, isMyFriend }) {
             borderBottomColor: "#AAAAAA",
             borderBottomWidth: 1,
         }}>
-            <LinearButton buttonStyle={styles.buttonContainer}>{displayButtonText(isMyProfile, isMyFriend)}</LinearButton>
-            <LinearButton buttonStyle={styles.buttonContainer}>Edit profile</LinearButton>
+            <LinearButton
+                buttonStyle={styles.buttonContainer}>
+                {displayButtonText(isMyProfile, isMyFriend)}
+            </LinearButton>
+            <LinearButton buttonStyle={styles.buttonContainer}>
+                Edit profile
+            </LinearButton>
             <Button
                 buttonStyle={{
                     backgroundColor: "#EEEEEE",

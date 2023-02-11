@@ -23,24 +23,17 @@ export const counterSlice = createSlice({
         updateUser : (state, action) => {
         },
     },
-    extraReducers : {
-        [editUserInfo.fulfilled] : (state, action) => {
-
-        },
-        [getUserInfo.fulfilled] : (state, action) => {
-            let payload = action.payload;
-            console.log(JSON.stringify(action.payload))
-            state.username = payload.username;
-            state.gender = payload.gender;
-            state.birthday = payload.birthday;
-            state.description = payload.description;
-            state.address = payload.address;
-            state.city = payload.city;
-            state.country = payload.country;
-        },
-        [getUserInfoById.fulfilled] : (state, action) => {
-
-        }
+    extraReducers : (builder) => {
+        // builder
+            // .addCase(editUserInfo.fulfilled, (state, action) => {
+            //
+            // })
+            // .addCase(getUserInfo.fulfilled, (state, action) => {
+            //
+            // })
+            // .addCase(getUserInfoById.fulfilled, (state, action) => {
+            //
+            // })
     },
 })
 

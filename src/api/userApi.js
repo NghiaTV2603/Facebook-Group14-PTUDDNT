@@ -41,7 +41,7 @@ UserApi.edit = async function (
 UserApi.show = async function() {
     return fetchingData (
         'users/show',
-        METHOD_TYPE.POST,
+        METHOD_TYPE.GET,
         null,
     )
 }

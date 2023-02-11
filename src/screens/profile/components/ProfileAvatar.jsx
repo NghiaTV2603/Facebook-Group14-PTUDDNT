@@ -41,7 +41,7 @@ function UploadImageButton({style, callBack}) {
         }
         try {
             let result = await ImagePicker.launchImageLibraryAsync(imagePickerOpt);
-            if (!result.cancelled) {
+            if (!result.canceled) {
                 callBack(result.assets[0].uri);
 
                 // TODO : UPLOAD IMAGE TO SERVER

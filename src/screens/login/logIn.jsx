@@ -5,8 +5,8 @@ import {loginWithPhoneNumber} from "./authThunk";
 import {authSelector} from "../../app/selector";
 
 export default function Login(props) {
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [password, setPassword] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("098765432121");
+    const [password, setPassword] = useState("admin");
     const [errorMessage, setErrorMessage] = useState("");
     const dispatch = useDispatch();
     const handleLogin = function() {
