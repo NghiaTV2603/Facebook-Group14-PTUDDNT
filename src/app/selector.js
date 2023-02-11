@@ -40,10 +40,14 @@ export const userInfoSelector = (state) => {
         "address"
     ];
     for (let key of infoKey) {
-        response[key] = userInfo[key];
+        if (userInfo[key]) {
+            response[key] = userInfo[key];
+        }
     }
     return response;
 }
+
+export const userNameSelector = (state) => state.user.username;
 
 
 export const userSeletor = (state) => state.user;

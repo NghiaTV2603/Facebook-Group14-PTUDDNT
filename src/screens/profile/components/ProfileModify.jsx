@@ -6,6 +6,7 @@ import {LinearGradient} from "expo-linear-gradient";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {getUserInfo} from "../userThunk";
+import {getNewFeed} from "../../components/postThunk";
 
 let styles = StyleSheet.create({
     buttonContainer: {
@@ -52,6 +53,7 @@ function LinearButton({children, containerStyle, buttonStyle, buttonHandler}) {
 }
 
 export default function ProfileModify({ isMyProfile, isMyFriend }) {
+    const dispatch = useDispatch();
 
     let displayButtonText = function(isMayProfile, isMyFriend) {
         if (isMayProfile) {
@@ -69,13 +71,17 @@ export default function ProfileModify({ isMyProfile, isMyFriend }) {
         ToastAndroid.show('A pikachu appeared nearby !', ToastAndroid.SHORT);
     };
 
+    const handleFriendButton = function() {
+        dispatch(getNewFeed(null));
+    }
+
     return (<>
         <View style={{
             ...gStyle.row,
             ...gStyle.flexCenter,
             justifyContent: "space-between",
             width: "100%",
-            paddingHorizontal: 10,
+            paddingHorizontal: 30,
             marginTop: 20,
             paddingBottom: 20,
             borderBottomColor: "#AAAAAA",
@@ -83,23 +89,13 @@ export default function ProfileModify({ isMyProfile, isMyFriend }) {
         }}>
             <LinearButton
                 buttonStyle={styles.buttonContainer}
+                buttonHandler={handleFriendButton}
             >
                 {displayButtonText(isMyProfile, isMyFriend)}
             </LinearButton>
             <LinearButton buttonStyle={styles.buttonContainer}>
                 Edit profile
             </LinearButton>
-            <Button
-                buttonStyle={{
-                    backgroundColor: "#EEEEEE",
-                    borderRadius: 7,
-                }}
-            >
-                <Feather
-                    name={"more-vertical"}
-                    size={22}
-                />
-            </Button>
         </View>
     </>);
 

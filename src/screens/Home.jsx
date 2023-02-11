@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Message from "./message/Message";
 import {Tab, TabView} from "@rneui/themed";
 import Profile from "./profile/Profile";
-import {ScrollView} from "react-native";
+import {AsyncStorage, ScrollView} from "react-native";
 import NewFeed from "./NewFeed/NewFeed";
 import Friend from "./friends/Friend";
 import {useDispatch, useSelector} from "react-redux";
