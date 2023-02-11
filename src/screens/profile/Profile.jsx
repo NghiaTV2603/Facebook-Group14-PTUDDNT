@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ScrollView, View} from "react-native";
+import {ScrollView, Text, View} from "react-native";
 import gStyle from "../../styles/globalStyle";
 import ProfileAvatar from "./components/ProfileAvatar";
 import ProfileModify from "./components/ProfileModify";
@@ -15,17 +15,8 @@ import {getUserInfo} from "./userThunk";
 import {useEffect} from "react";
 
 export default function Profile({navigation}) {
-    const dispatch = useDispatch();
-    const handleGetUserInfo = async function() {
-        dispatch(getUserInfo());
-        // TODO : Thực hiện gọi API lấy thông tin người dùng ở đây
-    }
     const data = useSelector(postNewFeedSelector);
     const userData = useSelector(userSeletor);
-
-    useEffect(async () => {
-        await handleGetUserInfo();
-    }, [])
 
     return (
         <View style={gStyle.fullWidth}>
@@ -40,6 +31,11 @@ export default function Profile({navigation}) {
                 {
                     data.map(element => <Post dataPost={element}/>)
                 }
+                <Text>
+                    {
+                        JSON.stringify(userData)
+                    }
+                </Text>
             </ScrollView>
         </View>
     );

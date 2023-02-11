@@ -13,28 +13,28 @@ UserApi.login = async function (username, password) {
     );
 }
 
-UserApi.edit = async function (
-    username,
-    gender,
-    birthday,
-    description,
-    address,
-    city,
-    country
-) {
-    let createPayload = {
-        username: username,
-        gender: gender,
-        birthday: birthday,
-        description: description,
-        address: address,
-        city: city,
-        country: country
-    };
+/**
+ * Khi sử dụng API này cần thực hiện truyền đúng đối tượng chứa 1 / nhiều trường như dưới ví dụ
+ * @param editPayload
+ * @returns {Promise<Response>}
+ * @example
+ * const editPayLoad = {
+ *   "username": "congson1907vn",
+ *   "gender": "male",
+ *   "birthday": "2001-07-19",
+ *   "description": "love you love your mum too",
+ *   "address": "thach Ha, Ha Tinh",
+ *   "city": "Ha Tinh",
+ *   "country": "Vietnam",
+ *   "avatar" : <Image Base 64>,
+ *   "cover_image" : <Image Base 64>
+ * }
+ */
+UserApi.edit = async function (editPayload ) {
     return fetchingData(
         'users/edit',
         METHOD_TYPE.POST,
-        createPayload
+        editPayload
     );
 }
 

@@ -1,6 +1,8 @@
 import {Text, View, StyleSheet} from "react-native";
 import gStyle from "../../../styles/globalStyle";
 import Feather from "react-native-vector-icons/Feather";
+import {useSelector} from "react-redux";
+import {userInfoSelector} from "../../../app/selector";
 
 let styles = StyleSheet.create({
     container: {
@@ -41,9 +43,8 @@ function Info({info, content}) {
 }
 
 export default function ProfileInfo({details}) {
-    ("\n\n");
-    (JSON.stringify(details));
-    ("\n\n");
+    let userInfo = useSelector(userInfoSelector);
+    console.log("[ProfileInfo] - " + JSON.stringify(userInfo));
     return (
         <>
             <View style={{

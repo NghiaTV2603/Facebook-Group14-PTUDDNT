@@ -1,5 +1,5 @@
-import {Text, View, StyleSheet} from "react-native";
-import {Button, LinearG} from "@rneui/base";
+import {View, StyleSheet, ToastAndroid} from "react-native";
+import {Button} from "@rneui/base";
 import gStyle from "../../../styles/globalStyle";
 import Feather from "react-native-vector-icons/Feather";
 import {LinearGradient} from "expo-linear-gradient";
@@ -27,8 +27,6 @@ function LinearButton({children, containerStyle, buttonStyle, buttonHandler}) {
     if (!buttonHandler) {
         buttonHandler = () => {
             dispatch(getUserInfo());
-
-            ("Click")
         }
     }
     return (<Button
@@ -67,6 +65,10 @@ export default function ProfileModify({ isMyProfile, isMyFriend }) {
         }
     };
 
+    const showToaster = function() {
+        ToastAndroid.show('A pikachu appeared nearby !', ToastAndroid.SHORT);
+    };
+
     return (<>
         <View style={{
             ...gStyle.row,
@@ -80,7 +82,8 @@ export default function ProfileModify({ isMyProfile, isMyFriend }) {
             borderBottomWidth: 1,
         }}>
             <LinearButton
-                buttonStyle={styles.buttonContainer}>
+                buttonStyle={styles.buttonContainer}
+            >
                 {displayButtonText(isMyProfile, isMyFriend)}
             </LinearButton>
             <LinearButton buttonStyle={styles.buttonContainer}>

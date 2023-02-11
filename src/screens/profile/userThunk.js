@@ -5,27 +5,26 @@ const userThunkLog = function(where, message) {
     console.log("[UserThunk] - " + where + " - " + message)
 }
 
+/**
+ * Yêu cầu khi cung cấp payload cần theo form như sau
+ * @type {AsyncThunk<unknown, void, AsyncThunkConfig>}
+ * @example
+ *   "username": "congson1907vn",
+ *   "gender": "male",
+ *   "birthday": "2001-07-19",
+ *   "description": "love you love your mum too",
+ *   "address": "thach Ha, Ha Tinh",
+ *   "city": "Ha Tinh",
+ *   "country": "Vietnam",
+ *   "avatar" : <IMAGE BASE 64>,
+ *   "cover_image" : <IMAGE BASE 64>
+ */
 const editUserInfo = createAsyncThunk(
     'user/editUserInfo',
-    async ({
-               username,
-               gender,
-               birthday,
-               description,
-               address,
-               city,
-               country
-           }, thunkApi) => {
+    async (editPayload, thunkApi) => {
         try {
-            let response = await UserApi.edit(
-                username,
-                gender,
-                birthday,
-                description,
-                address,
-                city,
-                country
-            );
+            console.log("CALLING");
+            let response = await UserApi.edit(editPayload);
             if (response.status !== 200) {
                userThunkLog('editUserInfo', "Something wrong when request with code : " + response.status);
             }
@@ -60,7 +59,9 @@ const getUserInfoById = createAsyncThunk(
 const getUserInfo = createAsyncThunk(
     'user/getUserInfo',
     async () => {
+        console.log("Calling")
         try {
+            userThunkLog("getUserInfo", "Calling this")
             let response = await UserApi.show();
             if (response.status !== 200) {
                 userThunkLog("getUserInfo", "Something wrong when request with code : " + response.status);

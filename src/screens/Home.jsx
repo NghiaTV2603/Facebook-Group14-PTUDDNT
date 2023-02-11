@@ -5,13 +5,18 @@ import Profile from "./profile/Profile";
 import {ScrollView} from "react-native";
 import NewFeed from "./NewFeed/NewFeed";
 import Friend from "./friends/Friend";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {authSelector} from "../app/selector";
 import Login from "./login/logIn";
+import {getUserInfo} from "./profile/userThunk";
 
 function Home() {
     const [index, setIndex] = React.useState(0);
     const loginState = useSelector(authSelector);
+    const dispatch = useDispatch();
+    const getUserInfoApi = function() {
+        dispatch(getUserInfo());
+    }
 
     return (
         <>
@@ -20,7 +25,12 @@ function Home() {
                     <>
                         <Tab
                             value={index}
-                            onChange={(e) => setIndex(e)}
+                            onChange={(e) => {
+                                if (e === 3) {
+                                    getUserInfoApi()
+                                }
+                                setIndex(e)
+                            }}
                             indicatorStyle={{
                                 backgroundColor: "white",
                                 height: 3,

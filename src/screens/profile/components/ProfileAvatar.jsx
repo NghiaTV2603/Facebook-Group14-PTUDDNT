@@ -1,10 +1,12 @@
 import {StyleSheet, Text, View, Image, Dimensions, ImageBackground, AsyncStorage} from "react-native";
-
 import gStyle from "../../../styles/globalStyle";
 import * as React from "react";
 import {Button, Icon} from "@rneui/base";
 import * as ImagePicker from "expo-image-picker";
 import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {userAvatarUrl, userCoverAvatarUrl} from "../../../app/selector";
+import {editUserInfo} from "../userThunk";
 
 let styles = StyleSheet.create({
     wallpaper: {
@@ -37,12 +39,22 @@ function UploadImageButton({style, callBack}) {
     }
     const uploadImageHandler = async function () {
         let imagePickerOpt = {
-            mediaType: ImagePicker.MediaTypeOptions.Images, quality: 1
+            mediaType: ImagePicker.MediaTypeOptions.Images,
+            quality: 1,
+            base64 : true
         }
         try {
             let result = await ImagePicker.launchImageLibraryAsync(imagePickerOpt);
             if (!result.canceled) {
-                callBack(result.assets[0].uri);
+                let uri = result.assets[0].uri;
+                let stringSplit = uri.split(".");
+                let imageExtension = stringSplit[stringSplit.length - 1];
+
+                let response = {
+                    uri : result.assets[0].uri,
+                    base64 : "data:image/" + imageExtension + ";base64," + result.assets[0].base64
+                }
+                callBack(response);
 
                 // TODO : UPLOAD IMAGE TO SERVER
             }
@@ -63,8 +75,15 @@ function UploadImageButton({style, callBack}) {
     </>);
 }
 
-function Avatar({style, avatarUrl, name}) {
-    let [avatarUri, setAvatar] = useState(avatarUrl);
+function Avatar({style, name}) {
+    let avatarUri = useSelector(userAvatarUrl);
+    let dispatch = useDispatch();
+    const uploadAvatarImage = (imageBase64) => {
+        let changeAvatarPayload = {
+            avatar : imageBase64
+        }
+        dispatch(editUserInfo(changeAvatarPayload));
+    }
     return (<>
         <View style={{
             ...gStyle.flexCenter, ...gStyle.column, ...style
@@ -76,8 +95,9 @@ function Avatar({style, avatarUrl, name}) {
                 />
                 <UploadImageButton
                     style={{position: "absolute", bottom: 15, right: 15}}
-                    callBack={(newImageUri) => {
-                        setAvatar(newImageUri)
+                    callBack={(imagePickerObj) => {
+                        uploadAvatarImage(imagePickerObj.base64);
+                        // setAvatar(imagePickerObj.uri)
                     }}
                 />
             </View>
@@ -97,7 +117,6 @@ function WallpaperBackground({children, style, backgroundUrl}) {
             <ImageBackground
                 style={{
                     ...gStyle.fullHeight, ...gStyle.fullWidth, position: "relative"
-
                 }}
                 source={{uri: backgroundUrl}}
             >
@@ -114,11 +133,16 @@ let mockBackgroundUrl = "https://scontent.fhan17-1.fna.fbcdn.net/v/t1.6435-9/186
 
 
 export default function ProfileAvatar() {
-    let [backgroundUrl, setBackground] = useState(mockBackgroundUrl);
-    useEffect(async () => {
-        let apiToken = await AsyncStorage.getItem("token");
-        console.log(apiToken);
-    },[])
+    let backgroundUrl = useSelector(userCoverAvatarUrl);
+    let dispatch = useDispatch();
+    const uploadCoverImage = (imageBase64) => {
+        let changeCoverImagePayload = {
+            cover_image : imageBase64
+        }
+        dispatch(editUserInfo(changeCoverImagePayload));
+    }
+
+
     return (<>
         <View style={{
             height: 349
@@ -128,12 +152,13 @@ export default function ProfileAvatar() {
                     style={{
                         position: "absolute", bottom: -100, left: Dimensions.get("window").width / 2 - 180 / 2,
                     }}
-                    avatarUrl={mockImageUrl}
                     name={"Trần Nhật Minh"}
                 />
                 <UploadImageButton
                     style={{position: "absolute", bottom: 15, right: 15}}
-                    callBack={(newBackgroundUri) => setBackground(newBackgroundUri)}
+                    callBack={(imagePickerObj) => {
+                        uploadCoverImage(imagePickerObj.base64);
+                    }}
                 />
             </WallpaperBackground>
 
