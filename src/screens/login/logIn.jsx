@@ -3,14 +3,17 @@ import {StyleSheet, Text, TextInput, View, Button} from 'react-native'
 import {useDispatch, useSelector} from "react-redux";
 import {loginWithPhoneNumber} from "./authThunk";
 import {authSelector} from "../../app/selector";
+import {getUserInfo} from "../profile/userThunk";
+import {getNewFeed} from "../components/postThunk";
 
 export default function Login(props) {
     const [phoneNumber, setPhoneNumber] = useState("0988888888");
     const [password, setPassword] = useState("05060202");
     const [errorMessage, setErrorMessage] = useState("");
+    const authInfo = useSelector(state => state.auth);
     const dispatch = useDispatch();
-    const handleLogin = function() {
-        dispatch(loginWithPhoneNumber({phoneNumber : phoneNumber, password : password}));
+    const handleLogin = async function() {
+        await dispatch(loginWithPhoneNumber({phoneNumber : phoneNumber, password : password}));
     }
 
     return (

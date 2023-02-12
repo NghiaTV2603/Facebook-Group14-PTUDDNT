@@ -10,8 +10,8 @@ const postSlice = createSlice({
     name:'post',
     initialState:{
         newFeed : [],
-        post : [],
         userPost : [],
+        otherUserPost : [],
     },
     reducers:{
 

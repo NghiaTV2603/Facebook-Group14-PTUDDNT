@@ -25,9 +25,10 @@ function CreatePost({closeCallback}) {
 
     const handleUpPost = function() {
         let payload = {};
-        payload.description = status;
+        payload.described = status;
         payload.images = [];
         listUploadImage.forEach((image) => {
+            console.log("[handleUpPost] imageUri = " + image.uri);
             payload.images.push(image.base64);
         })
         dispatch(createPost(payload));
@@ -52,7 +53,7 @@ function CreatePost({closeCallback}) {
 
                         response.push({
                             uri : uri,
-                            base64 : "data:image/" + imageExtension + ";base64," + result.assets[0].base64
+                            base64 : "data:image/" + imageExtension + ";base64," + assetFile.base64
                         })
                     })
                     let currentImages = JSON.parse(JSON.stringify(listUploadImage));
@@ -166,7 +167,7 @@ export default function AddPost() {
                 <Avatar
                     size={60}
                     rounded
-                    source={{uri: "https://randomuser.me/api/portraits/men/35.jpg"}}
+                    source={{uri : userAvatar}}
                 />
                 <View
                     style={{

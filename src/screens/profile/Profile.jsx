@@ -8,13 +8,13 @@ import ProfileInfo from "./components/ProfileInfo";
 import AddPost from "../NewFeed/components/AddPost";
 import Post from "../components/Post";
 import {useDispatch, useSelector} from "react-redux";
-import {postNewFeedSelector, userSeletor} from "../../app/selector";
+import {newFeedSelector, postNewFeedSelector, userSeletor} from "../../app/selector";
 import {Divider} from "@rneui/base";
 import {getUserInfo} from "./userThunk";
 import {useEffect} from "react";
 
 export default function Profile({navigation}) {
-    const data = useSelector(postNewFeedSelector);
+    const data = useSelector(newFeedSelector);
     const userData = useSelector(userSeletor);
 
     return (
