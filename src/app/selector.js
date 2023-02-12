@@ -4,7 +4,10 @@ import {BASE_SERVER_FILES} from "./constants";
 export const postNewFeedSelector = (state) => state.postNewFeed;
 export const commentPostSelector = (state) => state.post.comment;
 
+// AUTH ==============================================
 export const authSelector = (state) => state.auth;
+export const loginMessageErrorSel = (state) => state.auth.errorMessage;
+// END AUTH ==========================================
 
 // User Selector
 export const dataUserMessage = (state) => state.message;
