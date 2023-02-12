@@ -5,10 +5,12 @@ import Post from "../components/Post";
 import {ScrollView} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
 import AddPost from "./components/AddPost";
-import {postNewFeedSelector} from "../../app/selector";
+import {newFeedSelector, postNewFeedSelector} from "../../app/selector";
+
 
 export default function newFeed() {
-    const posts = useSelector(postNewFeedSelector);
+    const posts = useSelector(newFeedSelector);
+    console.log(JSON.stringify(posts));
     return (
         <ScrollView style={{width: "100%"}}>
             <View>
@@ -17,7 +19,7 @@ export default function newFeed() {
                     style={{marginBottom: 16, backgroundColor: "#DCDCDC", height: 1}}
                 />
                 {posts.map((post, index) => (
-                    <View key={index}>
+                    <View key={index} key={"POST_" + index}>
                         <Post dataPost={post}/>
                         <Divider
                             style={{
