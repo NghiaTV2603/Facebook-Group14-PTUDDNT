@@ -14,7 +14,6 @@ import {BASE_SERVER_FILES} from "../../app/constants";
 import {io} from "socket.io-client";
 import socketIOClient from "socket.io-client"
 
-const socket = io('https://old-facebook-chat-production.up.railway.app');
 
 export default function Message() {
     const dispatch = useDispatch()
@@ -29,13 +28,23 @@ export default function Message() {
     //test
     const [messageTest, setMessageTest] = useState("");
 
+    const socket = io(
+        "https://old-facebook-chat-production.up.railway.app", {
+            extraHeaders: {
+                token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRoaWVuaGF1b2NtbzI4MDIiLCJpZCI6IjYzZTc4NzlkODExMDFmMDAyMWY4ODY2NCIsImlhdCI6MTY3NjMwMDc0OX0.7bBHUN0pH2g-BM55e2JBAofyi1OeWpGuscEAvkQcTo4"
+            }
+        }
+    );
+
+
     useEffect(() => {
-        const socket = socketIOClient("https://old-facebook-chat-production.up.railway.app");
-        socket.on("message", data => {
-            setMessageTest(data);
-    console.log("[test | socket ] " + messageTest);
-        });
-    }, [messageTest]);
+        socket.on('message', () => {
+            console.log("RECEIVING MESSAGE");
+        })
+        return () => {
+            socket.off('message');
+        }
+    }, []);
 
     // handle send message
     const onChangeMessage = (text) => setMessage(text);
@@ -57,7 +66,7 @@ export default function Message() {
     }
     useEffect(()=>{
         socket.on('message',(data)=>{
-            console.log('emit ' + data)
+            console.log('emit ' + JSON.stringify(data))
         })
     },[socket])
 

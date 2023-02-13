@@ -17,4 +17,21 @@ FriendApi.getListRequestedFriend = async function (payload) {
     );
 }
 
+/**
+ * API sử dụng payload có dạng dữ liệu như dưới đây
+ * @param payload
+ * @returns {Promise<Response>}
+ * @example
+ * payload = {
+ *     "user_id" : <userId của người bạn muốn kết bạn>
+ * }
+ */
+FriendApi.setRequestedFriend = async function(payload) {
+    return fetchingData(
+        'friends/set-request-friend',
+        METHOD_TYPE.POST,
+        payload
+    )
+}
+
 export {FriendApi};

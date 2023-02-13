@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
-    editUserInfo, getSearchItems,
+    editUserInfo,
+    getSearchItems,
     getUserInfo,
     getUserInfoById
 } from "./userThunk";
@@ -49,7 +50,7 @@ export const counterSlice = createSlice({
     extraReducers : (builder) => {
         builder
             .addCase(editUserInfo.fulfilled, (state, action) => {
-                userSliceLog("editUserInfo", "payload = " + JSON.stringify(action.payload));
+                // userSliceLog("editUserInfo", "payload = " + JSON.stringify(action.payload));
                 let payload = action.payload.data;
                 state.username =  payload.username;
                 state.gender =  payload.gender;
@@ -64,7 +65,7 @@ export const counterSlice = createSlice({
                 state.blockedInbox =  payload.blockedInbox;
             })
             .addCase(getUserInfo.fulfilled, (state, action) => {
-                userSliceLog("getUserInfo", "payload = " + JSON.stringify(action.payload));
+                // userSliceLog("getUserInfo", "payload = " + JSON.stringify(action.payload));
                 let payload = action.payload.data;
                 state.username =  payload.username;
                 state.gender =  payload.gender;
@@ -78,11 +79,13 @@ export const counterSlice = createSlice({
                 state.blocked_diary =  payload.blocked_diary;
                 state.blockedInbox =  payload.blockedInbox;
             })
+            .addCase(getSearchItems.fulfilled, (state, action) => {
+                // userSliceLog("getSearchItems", "payload = " + JSON.stringify(action.payload));
+                console.log("getSearchItems payload = " + JSON.stringify(action.payload));
+                state.searchItems = action.payload.data;
+            })
             .addCase(getUserInfoById.fulfilled, (state, action) => {
 
-            })
-            .addCase(getSearchItems.fulfilled, (state, action) => {
-                userSliceLog("getSearchItems" , "payload = " + JSON.stringify(action.payload));
             })
     },
 })

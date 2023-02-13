@@ -59,7 +59,6 @@ const getUserInfoById = createAsyncThunk(
 const getUserInfo = createAsyncThunk(
     'user/getUserInfo',
     async () => {
-        console.log("Calling")
         try {
             userThunkLog("getUserInfo", "Calling this")
             let response = await UserApi.show();
@@ -77,7 +76,6 @@ const getUserInfo = createAsyncThunk(
 
 /**
  * API này sử dụng payload dưới dạng như sau
- * @type {AsyncThunk<unknown, void, AsyncThunkConfig>}
  * @example
  * payload = {
  *     keyword : "Thienhauocmo"
@@ -86,7 +84,7 @@ const getUserInfo = createAsyncThunk(
 const getSearchItems = createAsyncThunk(
     'user/getSearchItems',
     async (payload) => {
-        console.log("Calling")
+        userThunkLog("getSearchItems", "payload = " + JSON.stringify(payload));
         try {
             userThunkLog("getSearchItems", "Calling this")
             let response = await UserApi.search(payload);

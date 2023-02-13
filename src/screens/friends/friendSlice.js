@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {getListFriend, getListRequestedFriend} from "./FriendThunk";
 
 const friendSliceLog = function(where, message) {
-    console.log("[friendSlice] - " + where + " - " + message)
+    // console.log("[friendSlice] - " + where + " - " + message)
 }
 
 const friendSlice = createSlice({

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="356cb551-2da5-4d16-83d1-2f1860fa628e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/app/selector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/selector.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/friends/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/Search.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/friends/friendApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/friendApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/friends/friendSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/friendSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/login/SignUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/SignUp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/message/Message.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/message/Message.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/profile/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/userSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/profile/userThunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/userThunk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/share_components/TitleBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/share_components/TitleBar.jsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2LgbIKXIPSoWvQkWT4r4ZYVcjD2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Run" type="ReactNative" factoryName="React Native">
+      <node-interpreter value="project" />
+      <react-native value="$PROJECT_DIR$/node_modules/react-native" />
+      <platform value="ANDROID" />
+      <envs />
+      <only-packager />
+      <browser value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
+      <method v="2">
+        <option name="ReactNativePackager" enabled="true" />
+        <option name="ReactNativePackager" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="356cb551-2da5-4d16-83d1-2f1860fa628e" name="Changes" comment="" />
+      <created>1676295593952</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1676295593952</updated>
+      <workItem from="1676295595493" duration="5083000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

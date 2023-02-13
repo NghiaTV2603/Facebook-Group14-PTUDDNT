@@ -9,8 +9,7 @@ import SearchBottomSheetContent from "../friends/Search";
 let styles = StyleSheet.create({
     titleBar: {
         height: 65, width: "100%",
-    },
-    titleText: {
+    }, titleText: {
         fontSize: 32, fontWeight: "bold",
     },
 });
@@ -26,7 +25,7 @@ export default function TitleBar({title, searchCallback, ...props}) {
     const [search, setSearch] = useState("");
     const [showBottomSheet, setShow] = useState(false);
 
-    const handleSearchCallback = function() {
+    const handleSearchCallback = function () {
         setShow(true);
     }
     return (<>

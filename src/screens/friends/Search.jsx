@@ -1,8 +1,10 @@
-import {StyleSheet, TextInput, View} from "react-native";
+import {ScrollView, StyleSheet, TextInput, View} from "react-native";
 import gStyle from "../../styles/globalStyle";
-import globalStyle from "../../styles/globalStyle";
 import {useState} from "react";
 import {Button} from "@rneui/base";
+import {getSearchItems} from "../profile/userThunk";
+import {useDispatch, useSelector} from "react-redux";
+import {userSearchItem} from "../../app/selector";
 
 const styles = StyleSheet.create({
     fullScreen: {
@@ -15,12 +17,16 @@ const styles = StyleSheet.create({
 })
 export default function SearchBottomSheetContent({closeCallBack}) {
     const [keyword, setKeyword] = useState("");
+    const dispatch = useDispatch();
+    const searchItems = useSelector(userSearchItem);
     const handleChangeText = function (newValue) {
-        setKeyword(newValue)
+        setKeyword(newValue);
+        console.log("Calling");
     }
 
     const handleSearch = function () {
-
+        console.log("[Search] calling API with keyword = " + keyword);
+        dispatch(getSearchItems({keyword : keyword}));
     }
 
     return (
@@ -36,15 +42,9 @@ export default function SearchBottomSheetContent({closeCallBack}) {
                     ...styles.titleBar, ...gStyle.row, ...gStyle.flexCenter, justifyContent: "space-between",
                 }}>
                     <Button
-                        icon={{
-                            name: "arrow-left", type: "font-awesome", size: 20, color: "black",
-                        }}
-                        buttonStyle={{
-                            backgroundColor: "#EEEEEE",
-                        }}
-                        containerStyle={{
-                            height: 40, borderRadius: 10,
-                        }}
+                        icon={{ name: "arrow-left", type: "font-awesome", size: 20, color: "black", }}
+                        buttonStyle={{ backgroundColor: "#EEEEEE", }}
+                        containerStyle={{ height: 40, borderRadius: 10, }}
                         title={" "}
                         onPress={closeCallBack}
                     ></Button>
@@ -62,21 +62,18 @@ export default function SearchBottomSheetContent({closeCallBack}) {
                         }}
                     />
                     <Button
-                        icon={{
-                            name: "search", type: "font-awesome", size: 20, color: "black",
-                        }}
-                        buttonStyle={{
-                            backgroundColor: "#EEEEEE",
-                        }}
-                        containerStyle={{
-                            height: 40, borderRadius: 10,
-                        }}
+                        icon={{ name: "search", type: "font-awesome", size: 20, color: "black", }}
+                        buttonStyle={{ backgroundColor: "#EEEEEE", }}
+                        containerStyle={{ height: 40, borderRadius: 10, }}
                         title={" "}
                         onPress={() => {
-                            console.log("HELLO");
+                            handleSearch();
                         }}
                     ></Button>
                 </View>
+                <ScrollView>
+
+                </ScrollView>
             </View>
         </>
     );

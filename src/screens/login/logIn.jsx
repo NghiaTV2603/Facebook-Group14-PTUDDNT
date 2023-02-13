@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
-import {StyleSheet, Text, TextInput, View, TouchableOpacity, Image} from 'react-native'
+import {Text, TextInput, View, TouchableOpacity, Image} from 'react-native'
 import {useDispatch, useSelector} from "react-redux";
 import {loginWithPhoneNumber} from "./authThunk";
-import {authSelector, loginMessageErrorSel} from "../../app/selector";
+import {loginMessageErrorSel} from "../../app/selector";
 import SignUp from "./SignUp";
 import {styles} from './styles';
 

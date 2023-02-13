@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import {StyleSheet, Text, TextInput, View, Button, TouchableOpacity, Image} from 'react-native'
 import {useDispatch, useSelector} from "react-redux";
 import {styles} from './styles';
-import Login from "./logIn";
 
 export default function SignUp(props) {
     const [phoneNumber, setPhoneNumber] = useState();

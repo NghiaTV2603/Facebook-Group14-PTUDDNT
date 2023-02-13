@@ -65,6 +65,15 @@ export const userInfoSelector = (state) => {
 
 export const userNameSelector = (state) => state.user.username;
 
+export const userSearchItem = (state) => {
+    let searchItems = state.user.searchItems;
+    let listSearch = [];
+    console.log(JSON.stringify(Object.keys(searchItems)));
+    for (let category of Object.keys(searchItems)) {
+        console.log("Category " + category + " data = " + JSON.stringify(searchItems[category]));
+    }
+};
+
 // END USER SELECTOR ===========================================
 
 // POST SELECTOR ===============================================
