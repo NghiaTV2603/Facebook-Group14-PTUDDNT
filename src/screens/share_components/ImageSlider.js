@@ -14,7 +14,6 @@ const photos = [
 export default function Slideshow({listImage}) {
     const [scrollX, setScrollX] = useState(new Animated.Value(0))
     let position = Animated.divide(scrollX, width);
-    console.log("[SlideShow] - listImage = " + JSON.stringify(listImage));
         // position will be a value between 0 and photos.length - 1 assuming you don't scroll pass the ends of the ScrollView
 
         return(
@@ -39,7 +38,7 @@ export default function Slideshow({listImage}) {
                             {listImage.map((source, i) => { // for every object in the photos array...
                                 return ( // ... we will return a square Image with the corresponding object as the source
                                     <Image
-                                        key={i} // we will use i for the key because no two (or more) elements in an array will have the same index
+                                        key={"IMAGE_" + i} // we will use i for the key because no two (or more) elements in an array will have the same index
                                         style={{ width, height: width }}
                                         source={{uri : source}}
                                     />
@@ -60,7 +59,7 @@ export default function Slideshow({listImage}) {
                             });
                             return (
                                 <Animated.View // we will animate the opacity of the dots so use Animated.View instead of View here
-                                    key={i} // we will use i for the key because no two (or more) elements in an array will have the same index
+                                    key={"ANIMATED_" + i} // we will use i for the key because no two (or more) elements in an array will have the same index
                                     style={{ opacity, height: 10, width: 10, backgroundColor: '#595959', margin: 8, borderRadius: 5 }}
                                 />
                             );

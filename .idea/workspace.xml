@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="356cb551-2da5-4d16-83d1-2f1860fa628e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/screens/login/logIn.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/message/messageSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/baseNetwork.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/baseNetwork.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/selector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/selector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/NewFeed/NewFeed.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/NewFeed/NewFeed.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/NewFeed/components/AddPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/NewFeed/components/AddPost.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/NewFeed/newfeedSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/NewFeed/newfeedSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/components/Comment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/components/Comment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/components/postSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/components/postSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/login/SignUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/SignUp.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/message/Message.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/message/Message.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,8 +41,8 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2022.3.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -91,10 +79,25 @@
       <workItem from="1675326515796" duration="9685000" />
       <workItem from="1675498432954" duration="2038000" />
       <workItem from="1675692432263" duration="940000" />
+      <workItem from="1676040864488" duration="5193000" />
+      <workItem from="1676046074294" duration="7393000" />
+      <workItem from="1676055681801" duration="60175000" />
+      <workItem from="1676294036827" duration="192000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

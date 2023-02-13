@@ -28,7 +28,7 @@ export default function Profile({navigation}) {
                 <AddPost />
                 <Divider width={1} color={"#EEEEEE"} style={{marginBottom :  15}}/>
                 {
-                    data.map(element => <Post dataPost={element}/>)
+                    data.map((element, index) => <Post key={"PROFILE_" + index} dataPost={element}/>)
                 }
                 <Text>
                     {
