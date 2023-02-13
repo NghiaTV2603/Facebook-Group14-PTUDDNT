@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="356cb551-2da5-4d16-83d1-2f1860fa628e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api/messageApi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/screens/login/registerSlice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/screens/login/styles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/selector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/selector.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/message/Message.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/message/Message.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/login/authSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/authSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/message/messageSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/message/messageSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +53,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Ứng dụng đa nền tảng\Facebook-Group14-PTUDDNT\src\assets\images" />
       <recent name="D:\Ứng dụng đa nền tảng\Facebook-Group14-PTUDDNT\src" />
     </key>
   </component>
@@ -85,7 +85,7 @@
       <workItem from="1675326515796" duration="9685000" />
       <workItem from="1675498432954" duration="2038000" />
       <workItem from="1675692432263" duration="940000" />
-      <workItem from="1676173667758" duration="17878000" />
+      <workItem from="1676169017516" duration="22888000" />
     </task>
     <servers />
   </component>

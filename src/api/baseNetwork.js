@@ -16,7 +16,6 @@ export const fetchingData = async function (api, method, payload) {
         'Content-Type': 'application/json',
     }
     let token = await AsyncStorage.getItem("token");
-    console.log("[baseNetwork] TOKEN = " + token);
     if (token) {
         header = {
             ...header,

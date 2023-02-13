@@ -2,7 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {UserApi} from "../../api/userApi";
 
 const userThunkLog = function(where, message) {
-    console.log("[UserThunk] - " + where + " - " + message)
+    // console.log("[UserThunk] - " + where + " - " + message)
 }
 
 /**

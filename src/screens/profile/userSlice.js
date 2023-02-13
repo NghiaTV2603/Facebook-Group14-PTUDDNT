@@ -7,7 +7,7 @@ import {
 import {useDispatch} from "react-redux";
 
 const userSliceLog = function(where, message) {
-    console.log("[userSlice] - " + where + " - " + message);
+    // console.log("[userSlice] - " + where + " - " + message);
 }
 
 

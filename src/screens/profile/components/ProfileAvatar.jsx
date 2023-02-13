@@ -34,9 +34,6 @@ let styles = StyleSheet.create({
  * @constructor
  */
 function UploadImageButton({style, callBack}) {
-    const uploadImage = async function () {
-        return true;
-    }
     const uploadImageHandler = async function () {
         let imagePickerOpt = {
             mediaType: ImagePicker.MediaTypeOptions.Images,

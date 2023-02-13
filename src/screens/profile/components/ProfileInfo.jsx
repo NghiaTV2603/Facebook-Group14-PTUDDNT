@@ -7,7 +7,6 @@ import {userInfoSelector} from "../../../app/selector";
 let styles = StyleSheet.create({
     container: {
         width: "100%",
-        height: 236,
         paddingHorizontal: 20,
         paddingVertical: 16,
     },
@@ -21,7 +20,22 @@ let styles = StyleSheet.create({
     }
 })
 
-function Info({info, content}) {
+function Info({infoKey, content}) {
+    const getDisplayTextByKey = function(key) {
+        switch (key) {
+            case "gender":
+                return "She/he was ";
+            case "birthday":
+                return "She/he was born on ";
+            case "description":
+                return "Some description: ";
+            case "phonenumber":
+                return "Contact to me with number: ";
+            case "address":
+                return "Live in";
+        }
+
+    };
     return (
         <>
             <View style={{
@@ -34,17 +48,19 @@ function Info({info, content}) {
                 <Feather
                     name={"more-vertical"} size={25}
                 />
-                <Text style={styles.textNormal}>{info}
-                    <Text style={styles.textBold}>{content}</Text>
+                <Text style={styles.textNormal}>{getDisplayTextByKey(infoKey)}
+                    <Text style={styles.textBold}>{
+                        infoKey === "birthday" ? (new Date(content).toLocaleDateString()) : content
+                    }</Text>
                 </Text>
             </View>
         </>
     )
 }
 
-export default function ProfileInfo({details}) {
+export default function ProfileInfo() {
     let userInfo = useSelector(userInfoSelector);
-    console.log("[ProfileInfo] - " + JSON.stringify(userInfo));
+    // console.log("[ProfileInfo] - " + JSON.stringify(userInfo));
     return (
         <>
             <View style={{
@@ -53,8 +69,8 @@ export default function ProfileInfo({details}) {
                 alignItems: "flex-start",
             }}>
                 {
-                    details.map((detail, index) => <Info key={"profileInfo" + index} info={detail.title}
-                                                         content={detail.content}/>)
+                    Object.entries(userInfo).map(([key, value]) => <Info key={"profileInfo" + key} infoKey={key}
+                                                         content={value}/>)
                 }
             </View>
         </>

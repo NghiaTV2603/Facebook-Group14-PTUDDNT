@@ -7,6 +7,8 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import {BottomSheet} from "@rneui/themed";
 import Comment from "./Comment";
+import {BASE_SERVER_FILES} from "../../app/constants";
+import Slideshow from "../share_components/ImageSlider";
 
 const styles = StyleSheet.create({
     baseText: {
@@ -21,6 +23,51 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
 });
+
+function getTimeDifference(timestamp) {
+    const currentTime = new Date();
+    const givenTime = new Date(timestamp);
+    const timeDifference = currentTime - givenTime;
+
+    if (timeDifference < 60 * 1000) {
+        return `${Math.floor(timeDifference / 1000)} seconds ago`;
+    } else if (timeDifference < 60 * 60 * 1000) {
+        return `${Math.floor(timeDifference / (60 * 1000))} minutes ago`;
+    } else if (timeDifference < 24 * 60 * 60 * 1000) {
+        return `${Math.floor(timeDifference / (60 * 60 * 1000))} hours ago`;
+    } else if (timeDifference < 7 * 24 * 60 * 60 * 1000) {
+        return `${Math.floor(timeDifference / (24 * 60 * 60 * 1000))} days ago`;
+    } else {
+        return givenTime.toLocaleDateString();
+    }
+}
+
+/**
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ *  {
+ *       "images": [],
+ *       "videos": [],
+ *       "like": [],
+ *       "countComments": 0,
+ *       "isLike": false,
+ *       "_id": "63e684eafd8ecd0021ee8c6e",
+ *       "author": {
+ *         "_id": "6395ef6b6eca6b001600dac7",
+ *         "phonenumber": "0987654321+1",
+ *         "username": "congson1907vn",
+ *         "avatar": {
+ *           "_id": "63e7c7f935b993002107ed98",
+ *           "fileName": "e80803c1-71aa-4b16-a7c1-37ab591c6db9.jpg"
+ *         }
+ *       },
+ *       "described": "sd",
+ *       "createdAt": "2023-02-10T17:54:50.698Z",
+ *       "updatedAt": "2023-02-10T17:54:50.698Z",
+ *       "__v": 0
+ *     }
+ */
 export default function Post(props) {
     const post = props.dataPost
     const [like, setLike] = React.useState(post.like);
@@ -50,10 +97,10 @@ export default function Post(props) {
                 }}
             >
                 <View style={{flexDirection: "row", alignItems: "center"}}>
-                    <Avatar size={60} rounded source={{uri: post.avatar}}/>
+                    <Avatar size={60} rounded source={{uri: BASE_SERVER_FILES + post.avatar}}/>
                     <View style={{flexDirection: "column", marginLeft: 8}}>
                         <Text style={styles.titleText}>{post.user}</Text>
-                        <Text> {post.date} .</Text>
+                        <Text> {getTimeDifference(post.date)} .</Text>
                     </View>
                 </View>
                 <Ionicons name="ellipsis-vertical" style={{fontSize: 24}}/>
@@ -67,12 +114,10 @@ export default function Post(props) {
             >
                 {post.caption}
             </Text>
-            <Image
-                source={{
-                    uri: post.content,
-                }}
-                style={{height: 300}}
-            />
+            {
+                post.imageContent.length !== 0 &&
+                <Slideshow listImage={post.imageContent.map(image => BASE_SERVER_FILES + image.fileName)}/>
+            }
             <View
                 style={{
                     marginTop: 8,
