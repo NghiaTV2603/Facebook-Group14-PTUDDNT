@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
-    editUserInfo,
+    editUserInfo, getSearchItems,
     getUserInfo,
     getUserInfoById
 } from "./userThunk";
@@ -40,6 +40,7 @@ export const counterSlice = createSlice({
         blockedDiary: [],
         phoneNumber: "0987654321+1",
         id: "6395ef6b6eca6b001600dac7",
+        searchItems : [],
     },
     reducers : {
         updateUserInfo : (state, action) => {
@@ -79,6 +80,9 @@ export const counterSlice = createSlice({
             })
             .addCase(getUserInfoById.fulfilled, (state, action) => {
 
+            })
+            .addCase(getSearchItems.fulfilled, (state, action) => {
+                userSliceLog("getSearchItems" , "payload = " + JSON.stringify(action.payload));
             })
     },
 })

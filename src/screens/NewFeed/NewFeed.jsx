@@ -10,7 +10,6 @@ import {newFeedSelector, postNewFeedSelector} from "../../app/selector";
 
 export default function newFeed() {
     const posts = useSelector(newFeedSelector);
-    console.log(JSON.stringify(posts));
     return (
         <ScrollView style={{width: "100%"}}>
             <View>

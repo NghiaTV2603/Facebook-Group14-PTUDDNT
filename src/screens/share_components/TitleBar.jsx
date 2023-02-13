@@ -1,7 +1,10 @@
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, TextInput, View} from "react-native";
 import gStyle from "../../styles/globalStyle";
-import {Button} from "@rneui/themed";
+import {BottomSheet, Button} from "@rneui/themed";
 import * as React from "react";
+import globalStyle from "../../styles/globalStyle";
+import {useState} from "react";
+import SearchBottomSheetContent from "../friends/Search";
 
 let styles = StyleSheet.create({
     titleBar: {
@@ -20,12 +23,11 @@ let styles = StyleSheet.create({
  * @constructor
  */
 export default function TitleBar({title, searchCallback, ...props}) {
+    const [search, setSearch] = useState("");
+    const [showBottomSheet, setShow] = useState(false);
+
     const handleSearchCallback = function() {
-        if (searchCallback === null) {
-            ("[TITLE BAR] - No searchCallback");
-        } else {
-            searchCallback();
-        }
+        setShow(true);
     }
     return (<>
         <View style={{
@@ -47,5 +49,10 @@ export default function TitleBar({title, searchCallback, ...props}) {
             ></Button>
 
         </View>
+        <BottomSheet
+            isVisible={showBottomSheet}
+        >
+            <SearchBottomSheetContent closeCallBack={() => setShow(false)}/>
+        </BottomSheet>
     </>);
 }

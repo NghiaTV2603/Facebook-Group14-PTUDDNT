@@ -2,8 +2,9 @@ import {Avatar, BottomSheet, ListItem} from "@rneui/themed";
 import {ScrollView, StyleSheet, Text, TextInput, View} from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import React from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {commentPostSelector} from "../../app/selector";
+import {createComment} from "./postThunk";
 
 const styles = StyleSheet.create({
     titleComment: {
@@ -17,10 +18,10 @@ const authenUser = {
     avatar: 'https://scontent-hkg4-2.xx.fbcdn.net/v/t39.30808-6/305661487_1194341188091112_1645695713395016930_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=W_DuuX3bx5gAX-pnAJA&_nc_ht=scontent-hkg4-2.xx&oh=00_AfBJo83lNVrryho2atxL6o7DSP3QeSTASncKzVbbY8yRsQ&oe=63A74253',
 }
 
-export default function Comment() {
+export default function Comment({currentPost}) {
     const comments = useSelector(commentPostSelector)
     const [inputValue, setInputValue] = React.useState();
-    const [commentsPost, setCommentsPost] = React.useState(comments)
+    const dispatch = useDispatch();
 
     const onChangeText = (text) => setInputValue({
         name: authenUser.username,
@@ -28,7 +29,15 @@ export default function Comment() {
         comment: text,
     });
     const onSubmit = () => {
-        setCommentsPost([...commentsPost, inputValue]);
+        let payload = {
+            postId : currentPost,
+            content : inputValue
+        }
+        console.log(JSON.stringify(payload));
+        dispatch(createComment({
+            postId : currentPost,
+            content : inputValue.comment
+        }))
         setInputValue('');
     };
     return (
@@ -36,9 +45,9 @@ export default function Comment() {
             <ListItem>
                 <View style={{height: 440}}>
                     <ScrollView style={{width: "100%"}}>
-                        {commentsPost.map((cmt) => (
+                        {comments.map((cmt, index) => (
                             <View
-                                key={cmt.id}
+                                key={"CMT_" + index}
                                 style={{
                                     flexDirection: "row",
                                     width: 380,
@@ -59,7 +68,7 @@ export default function Comment() {
                                             width: 320,
                                         }}
                                     >
-                                        <Text style={styles.titleComment}>{cmt.name}</Text>
+                                        <Text style={styles.titleComment}>{cmt.username}</Text>
                                         <Text style={{marginRight: 8}}>{cmt.comment}</Text>
                                     </View>
                                 </View>

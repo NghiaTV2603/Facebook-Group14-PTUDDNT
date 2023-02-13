@@ -2,7 +2,20 @@ import {createSelector} from "@reduxjs/toolkit";
 import {BASE_SERVER_FILES} from "./constants";
 
 export const postNewFeedSelector = (state) => state.postNewFeed;
-export const commentPostSelector = (state) => state.post.comment;
+export const commentPostSelector = (state) => {
+    let listComment = state.post.comment;
+    let clientComment = [];
+    listComment.map((comment) => {
+        let element = {
+            username : comment.user.username,
+            userId : comment.user._id,
+            avatar : BASE_SERVER_FILES + comment.user.avatar.fileName,
+            comment : comment.content
+        }
+        clientComment.unshift(element);
+    })
+    return clientComment;
+};
 
 // AUTH ==============================================
 export const authSelector = (state) => state.auth;
@@ -10,7 +23,7 @@ export const loginMessageErrorSel = (state) => state.auth.errorMessage;
 // END AUTH ==========================================
 
 // USER SELECTOR ====================================================
-export const dataUserMessage = (state) => state.message;
+export const dataUserMessage = (state) => state.message.listChat;
 export const userAvatarUrl = (state) => {
     let userInfo = state.user;
     let url;
@@ -60,16 +73,17 @@ export const newFeedSelector = (state) => {
     if (state.post && state.post.newFeed) {
         let response = [];
         let serverPost = state.post.newFeed;
-        serverPost.map(({author, countComments, described, images, like, updatedAt}) => {
+        serverPost.map(({_id, isLike, author, countComments, described, images, like, createdAt}) => {
             let clientPost = {
-                id : author._id,
+                id : _id,
                 user : author.username,
                 avatar : author.avatar.fileName,
-                date : updatedAt,
+                date : createdAt,
                 caption : described,
                 comment : countComments,
-                like : like.length,
+                likeNumber : like.length,
                 imageContent : images,
+                isLike : isLike
             }
             response.push(clientPost);
         })
@@ -116,6 +130,8 @@ export const newFeedSelector = (state) => {
         ]
     }
 }
+
+
 
 
 // END POST SELECTOR ===========================================

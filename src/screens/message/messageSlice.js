@@ -1,36 +1,99 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice,createAsyncThunk} from "@reduxjs/toolkit";
+import MessageApi from "../../api/messageApi";
+
+
 
 const messageSlice = createSlice({
     name:'message',
-    initialState:[
-        {
-            user_id:1,
-            name:'Thong TM',
-            avatar:'https://i.pinimg.com/originals/63/8c/53/638c53783cd8161ffd87d5846a10b928.jpg',
-            message:'hi',
-        },
-        {
-            user_id:2,
-            name:'Minh TN',
-            avatar:'https://i.pinimg.com/originals/05/5a/1d/055a1de0f1d3c598363b313d61696ecd.gif',
-            message:'hello',
-        },
-        {
-            user_id:3,
-            name:'Truong TD',
-            avatar:'https://cdn.popsww.com/blog/sites/2/2021/12/naruto-sasuke.jpg',
-            message:'whattt...',
-        },
-        {
-            user_id:4,
-            name:'Nam TM',
-            avatar:'https://cdn.popsww.com/blog/sites/2/2021/12/naruto-sasuke.jpg',
-            message:'Ava..',
-        },
-    ],
-    reducers:{
+    initialState:{
+        listChat : [
+            {
+                "chatId": '',
+                "lastMessage": {
+                    "_id": "",
+                    "time": "",
+                    "senderId": "",
+                    "receiverId": "",
+                    "content": "",
+                    "chatId": "",
+                    "createdAt": "",
+                    "updatedAt": "",
+                    "__v": 0
+                },
+                "friend": {
+                    "gender": "",
+                    "blocked_inbox": [],
+                    "blocked_diary": [],
+                    "_id": "",
+                    "phonenumber": "",
+                    "password": "",
+                    "username": "",
+                    "avatar": {
+                        "type": "",
+                        "_id": "",
+                        "fileName": "",
+                        "fileSize": '',
+                        "__v": 0,
+                        "createdAt": "",
+                        "updatedAt": ""
+                    },
+                    "cover_image": "",
+                    "createdAt": "",
+                    "updatedAt": "",
+                    "__v": 4,
+                    "address": "",
+                    "birthday": "",
+                    "city": "",
+                    "country": "",
+                    "description": ""
+                },
+                "seen": true,
+                "blockers": []
+            }
+        ],
+        currentChat: [],
 
     },
+    reducers:{
+        addMessage : (state,action) => {
+            state.currentChat.push(action.payload)
+        }
+    },
+    extraReducers: builder => {
+        builder.addCase(fetchListChat.fulfilled,(state, action) => {
+            state.listChat = action.payload
+        })
+        builder.addCase(fetchMessage.fulfilled,(state, action)=>{
+            state.currentChat = action.payload
+        })
+    }
 })
+
+export const fetchListChat = createAsyncThunk("message/fetchListChat", async () => {
+    try {
+        let response = await MessageApi.listChat();
+        if (response.status !== 200) {
+            console.log("[FetchListChatThunk - Error] " + response.status);
+        }
+        let json = await response.json();
+        return json.data;
+    } catch (err) {
+        console.log("[FetchListChatThunk - Error ]" + JSON.stringify(err));
+    }
+})
+
+export const fetchMessage = createAsyncThunk("message/fetchMessage", async (chatId)=>{
+    try {
+        let response = await MessageApi.getMessage(chatId);
+        if (response.status !== 200) {
+            console.log("[FetchMessage - Error] " + response.status);
+        }
+        let json = await response.json();
+        return json.data;
+    } catch (err) {
+        console.log("[FetchMessage - Error ]" + JSON.stringify(err));
+    }
+})
+
 
 export default messageSlice
