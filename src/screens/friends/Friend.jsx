@@ -5,10 +5,7 @@ import {BottomSheet, Button} from "@rneui/themed";
 import {useState} from "react";
 import friendMock from "./FriendMock";
 import * as React from "react";
-import Profile from "../profile/Profile";
 import TitleBar from "../share_components/TitleBar";
-import {mergeOptions} from "@babel/core/lib/config/util";
-import {configureStore} from "@reduxjs/toolkit";
 import BottomSheetProfile from "../share_components/BottomSheetProfile";
 
 const FriendConstant = {

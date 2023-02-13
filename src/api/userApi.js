@@ -54,4 +54,13 @@ UserApi.showWithId = async function(userId) {
         null
     )
 }
+
+UserApi.search = async function(payload) {
+    let api = 'search/' + payload.keyword;
+    return fetchingData(
+        api,
+        METHOD_TYPE.GET,
+        null
+    )
+}
 export {UserApi};

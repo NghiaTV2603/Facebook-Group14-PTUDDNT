@@ -10,6 +10,7 @@ import {authSelector} from "../app/selector";
 import Login from "./login/logIn";
 import {getUserInfo} from "./profile/userThunk";
 import {getNewFeed} from "./components/postThunk";
+import {getListFriend, getListRequestedFriend} from "./friends/FriendThunk";
 
 const TAB = {
     HOME : 0,
@@ -36,6 +37,7 @@ function Home() {
     if (loginState.isLogin && onlyOneLoad) {
         dispatch(getUserInfo());
         dispatch(getNewFeed(null));
+        dispatch(getListRequestedFriend(null));
         setLoad(false);
     }
 
@@ -45,6 +47,10 @@ function Home() {
     }
     const getUserInfoApi = function() {
         dispatch(getUserInfo());
+    }
+
+    const getListFriendApi = function() {
+        dispatch(getListRequestedFriend(null));
     }
 
     const handleChangeTab = function(index) {
@@ -58,7 +64,7 @@ function Home() {
                 break;
 
             case TAB.FRIEND:
-                console.log("[Friend] - load friend API");
+                getListFriendApi();
                 break;
 
             case TAB.PROFILE:

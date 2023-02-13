@@ -27,6 +27,54 @@ PostApi.getNewFeed = function(payload) {
         null
     )
 }
+/**
+ * Payload là một đối tượng có chứa trường postId
+ * @param payload
+ * @returns {Promise<Response>}
+ * @example
+ * payload = {
+ *     postId : <Post ID ở đây>
+ * }
+ */
+PostApi.likePost = function(payload) {
+    let postId = payload.postId;
+    console.log("[postApi] uri = " + 'postLike/action/' + postId);
+    return fetchingData(
+        'postLike/action/' + postId,
+        METHOD_TYPE.POST,
+        null
+    )
+}
+
+/**
+ * Payload là một đối tượng có chứa trường postId
+ * @param payload
+ * @returns {Promise<Response>}
+ * @example
+ * payload = {
+ *     postId : <Post ID ở đây>
+ * }
+ */
+PostApi.getComment = function(payload) {
+    let postId = payload.postId;
+    console.log("[postApi] - getComment - uri = " + 'postLike/action/' + postId);
+    return fetchingData(
+        'postComment/list/' + postId,
+        METHOD_TYPE.GET,
+        null
+    )
+}
+
+PostApi.createComment = function(payload) {
+    let postId = payload.postId;
+    return fetchingData(
+        'postComment/create/' + postId,
+        METHOD_TYPE.POST,
+        {
+            content : payload.content
+        }
+    )
+}
 
 export {PostApi};
 

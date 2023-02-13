@@ -9,6 +9,9 @@ import {BottomSheet} from "@rneui/themed";
 import Comment from "./Comment";
 import {BASE_SERVER_FILES} from "../../app/constants";
 import Slideshow from "../share_components/ImageSlider";
+import {useDispatch} from "react-redux";
+import {getComment, likePost} from "./postThunk";
+import postSlice from "./postSlice";
 
 const styles = StyleSheet.create({
     baseText: {
@@ -47,40 +50,34 @@ function getTimeDifference(timestamp) {
  * @returns {JSX.Element}
  * @constructor
  *  {
- *       "images": [],
- *       "videos": [],
- *       "like": [],
- *       "countComments": 0,
- *       "isLike": false,
- *       "_id": "63e684eafd8ecd0021ee8c6e",
- *       "author": {
- *         "_id": "6395ef6b6eca6b001600dac7",
- *         "phonenumber": "0987654321+1",
- *         "username": "congson1907vn",
- *         "avatar": {
- *           "_id": "63e7c7f935b993002107ed98",
- *           "fileName": "e80803c1-71aa-4b16-a7c1-37ab591c6db9.jpg"
- *         }
- *       },
- *       "described": "sd",
- *       "createdAt": "2023-02-10T17:54:50.698Z",
- *       "updatedAt": "2023-02-10T17:54:50.698Z",
- *       "__v": 0
- *     }
+        id : author._id,
+        user : author.username,
+        avatar : author.avatar.fileName,
+        date : updatedAt,
+        caption : described,
+        comment : countComments,
+        likeNumber : like.length,
+        imageContent : images,
+        isLike : isLike
+ *  }
  */
 export default function Post(props) {
     const post = props.dataPost
-    const [like, setLike] = React.useState(post.like);
-    const [isLike, setIsLike] = React.useState(false);
+    const dispatch = useDispatch();
     const [isVisible, setIsVisible] = React.useState(false);
     const handleLike = () => {
-        if (isLike) {
-            setLike(like - 1);
-        } else {
-            setLike(like + 1);
-        }
-        setIsLike(!isLike);
+        console.log("[handleLike] - Calling");
+        dispatch(likePost({
+            postId : post.id
+        }))
     };
+
+    const handleOpenComment = function() {
+        setIsVisible(true);
+        dispatch(postSlice.actions.clearComment);
+        dispatch(getComment({postId : post.id}));
+    }
+
     return (
         <View
             style={{
@@ -130,7 +127,7 @@ export default function Post(props) {
                     name="like1"
                     style={{color: "#1E90FF", fontSize: 16, paddingLeft: 8}}
                 >
-                    <Text style={{fontSize: 13}}>{like}</Text>
+                    <Text style={{fontSize: 13}}>{post.likeNumber}</Text>
                 </AntDesign>
                 <Text style={{fontSize: 14, paddingRight: 8}}>
                     {post.comment} comments
@@ -153,18 +150,18 @@ export default function Post(props) {
                 }}
             >
                 <AntDesign
-                    name={isLike ? "like1" : "like2"}
-                    color={isLike ? "#1E90FF" : "black"}
+                    name={post.isLike ? "like1" : "like2"}
+                    color={post.isLike ? "#1E90FF" : "black"}
                     style={{fontSize: 32, paddingRight: 8}}
                     onPress={handleLike}
                 />
-                <Text style={{fontSize: 16, color: isLike ? "#1E90FF" : "black"}}>
+                <Text style={{fontSize: 16, color: post.isLike ? "#1E90FF" : "black"}}>
                     Like
                 </Text>
                 <MaterialCommunityIcons
                     name="comment-outline"
                     style={{fontSize: 32, marginLeft: 64, paddingRight: 8}}
-                    onPress={() => setIsVisible(true)}
+                    onPress={handleOpenComment}
                 />
                 <Text style={{fontSize: 16}}>Comment</Text>
             </View>
@@ -178,7 +175,7 @@ export default function Post(props) {
                 modalProps={{}}
                 isVisible={isVisible}
             >
-                <Comment/>
+                <Comment currentPost={post.id}/>
             </BottomSheet>
         </View>
     );

@@ -11,7 +11,7 @@ import * as ImagePicker from "expo-image-picker";
 import globalStyle from "../../../styles/globalStyle";
 import {createPost} from "../../components/postThunk";
 
-function CreatePost({closeCallback}) {
+function CreatePost({closeCallback, postId}) {
     const userAvatar = useSelector(userAvatarUrl);
     const userName = useSelector(userNameSelector);
     const dispatch = useDispatch();
@@ -149,7 +149,7 @@ function CreatePost({closeCallback}) {
     )
 
 }
-export default function AddPost() {
+export default function AddPost({postId}) {
     let userName = useSelector(userNameSelector);
     let userAvatar = useSelector(userAvatarUrl);
 
@@ -196,7 +196,10 @@ export default function AddPost() {
                 modalProps={{}}
                 isVisible={isVisible}
             >
-                <CreatePost closeCallback={() => setIsVisible(false)}/>
+                <CreatePost
+                    closeCallback={() => setIsVisible(false)}
+                    postid={postId}
+                />
             </BottomSheet>
         </View>
     );

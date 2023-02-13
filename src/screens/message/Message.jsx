@@ -14,7 +14,6 @@ import {BASE_SERVER_FILES} from "../../app/constants";
 import {io} from "socket.io-client";
 import socketIOClient from "socket.io-client"
 
-const socket = io('https://old-facebook-chat-production.up.railway.app');
 
 export default function Message() {
     const dispatch = useDispatch()
@@ -29,13 +28,23 @@ export default function Message() {
     //test
     const [messageTest, setMessageTest] = useState("");
 
+    const socket = io(
+        "https://old-facebook-chat-production.up.railway.app", {
+            extraHeaders: {
+                token: token
+            }
+        }
+    );
+
+
     useEffect(() => {
-        const socket = socketIOClient("https://old-facebook-chat-production.up.railway.app");
-        socket.on("message", data => {
-            setMessageTest(data);
-    console.log("[test | socket ] " + messageTest);
-        });
-    }, [messageTest]);
+        socket.on('message', () => {
+            console.log("RECEIVING MESSAGE");
+        })
+        return () => {
+            socket.off('message');
+        }
+    }, []);
 
     // handle send message
     const onChangeMessage = (text) => setMessage(text);
@@ -55,9 +64,13 @@ export default function Message() {
             dispatch(messageSlice.actions.addMessage(data))
         }
     }
+    console.log( "auth ID  : "  + AuthID)
     useEffect(()=>{
         socket.on('message',(data)=>{
-            console.log('emit ' + data)
+            console.log('emit ' + JSON.stringify(data))
+            if(data.chatId===dataChat.chatId && data.receiverId === AuthID ){
+                dispatch(messageSlice.actions.addMessage(data))
+            }
         })
     },[socket])
 
@@ -113,6 +126,7 @@ export default function Message() {
             <BottomSheet
                 onBackdropPress={() => {
                     setIsVisible(!isVisible);
+                    dispatch(messageSlice.actions.resetCurrentChat())
                 }}
                 modalProps={{}}
                 isVisible={isVisible}
@@ -122,7 +136,10 @@ export default function Message() {
                         <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 8}}>
                             <Ionicons name={'chevron-back-sharp'}
                                       style={{fontSize: 32, color: 'blue', marginRight: 8}}
-                                      onPress={() => setIsVisible(false)}/>
+                                      onPress={() => {
+                                          setIsVisible(false);
+                                          dispatch(messageSlice.actions.resetCurrentChat())
+                                      }}/>
                             <Avatar size={38}
                                     rounded
                                     source={{uri: e.length === 0 ? '' : BASE_SERVER_FILES + e.friend.avatar.fileName}}/>
@@ -130,7 +147,7 @@ export default function Message() {
                         </View>
                         <View style={{paddingTop: 16, height: 600}}>
                             <ScrollView style={{width: "100%"}}>
-                                {dataChat.map((data, index) => (
+                                {dataChat.length !== 0 &&  dataChat.data.map((data, index) => (
                                     <View key={data.content + index}>
                                         <View style={{
                                             padding: 8,
