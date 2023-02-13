@@ -7,7 +7,7 @@ export const commentPostSelector = (state) => state.post.comment;
 export const authSelector = (state) => state.auth;
 
 // User Selector
-export const dataUserMessage = (state) => state.message;
+export const dataUserMessage = (state) => state.message.listChat;
 export const userAvatarUrl = (state) => {
     let userInfo = state.user;
     let url;
