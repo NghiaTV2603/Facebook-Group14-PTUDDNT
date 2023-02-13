@@ -17,10 +17,13 @@ export const commentPostSelector = (state) => {
     return clientComment;
 };
 
+// AUTH ==============================================
 export const authSelector = (state) => state.auth;
+export const loginMessageErrorSel = (state) => state.auth.errorMessage;
+// END AUTH ==========================================
 
 // USER SELECTOR ====================================================
-export const dataUserMessage = (state) => state.message;
+export const dataUserMessage = (state) => state.message.listChat;
 export const userAvatarUrl = (state) => {
     let userInfo = state.user;
     let url;

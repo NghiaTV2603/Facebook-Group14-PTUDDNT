@@ -24,6 +24,7 @@ export const counterSlice = createSlice({
                 if (payload.message) {
                     state.errorMessage = payload.message
                 } else {
+                    state.errorMessage = "";
                     state.isLogin = true;
                     state.token = payload.token;
                     AsyncStorage.setItem("token", payload.token);
