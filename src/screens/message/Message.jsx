@@ -152,7 +152,7 @@ export default function Message() {
                                     source={{uri: e.length === 0 ? '' : BASE_SERVER_FILES + e.friend.avatar.fileName}}/>
                             <Text style={{fontSize: 20, marginLeft: 8}}>{e.length === 0 ? '' : e.friend.username}</Text>
                         </View>
-                        <View style={{paddingTop: 16, height: 600}}>
+                        <View style={{paddingTop: 16, height: 725}}>
                             <ScrollView ref={scrollViewRef}
                                         onContentSizeChange={() => scrollViewRef.current.scrollToEnd({animated: false})}>
                                 {dataChat.length !== 0 && dataChat.data.map((data, index) => (

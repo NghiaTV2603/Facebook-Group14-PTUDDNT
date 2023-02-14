@@ -20,9 +20,9 @@ const TAB = {
 }
 const TAB_CONFIG = [
     {name : "Home", iconName : "home", component : <NewFeed key={"NEWFEED"}/>},
-    {name : "Chat", iconName : "mail", component : <Message key={"MESSAGE"}/>},
-    {name : "Friend", iconName : "mail", component : <Friend key={"FRIEND"}/>},
-    {name : "Profile", iconName : "mail", component : <Profile key={"PROFILE"}/>},
+    {name : "Chat", iconName : "chatbox-ellipses", component : <Message key={"MESSAGE"}/>},
+    {name : "Friend", iconName : "people", component : <Friend key={"FRIEND"}/>},
+    {name : "Profile", iconName : "person-circle-sharp", component : <Profile key={"PROFILE"}/>},
 ]
 
 function Home() {
