@@ -1,8 +1,6 @@
 import {BottomSheet, Button} from "@rneui/themed";
 import {ScrollView, View} from "react-native";
 import Profile from "../profile/Profile";
-import {useState} from "react";
-import friendMock from "../friends/FriendMock";
 
 export default function BottomSheetProfile({isVisible, uid, closeCallback, ...props}) {
 

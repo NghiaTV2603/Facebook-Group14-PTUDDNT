@@ -51,6 +51,7 @@ function Home() {
 
     const getListFriendApi = function() {
         dispatch(getListRequestedFriend(null));
+        dispatch(getListFriend(null));
     }
 
     const handleChangeTab = function(index) {

@@ -1,18 +1,16 @@
-import {Image, StyleSheet, Touchable, TouchableHighlight} from "react-native";
-import {View, Text, ScrollView} from "react-native";
+import {StyleSheet} from "react-native";
+import {View, ScrollView} from "react-native";
 import gStyle from "../../styles/globalStyle";
-import {BottomSheet, Button} from "@rneui/themed";
+import {Button} from "@rneui/themed";
 import {useState} from "react";
-import friendMock from "./FriendMock";
 import * as React from "react";
 import TitleBar from "../share_components/TitleBar";
 import BottomSheetProfile from "../share_components/BottomSheetProfile";
+import {useSelector} from "react-redux";
+import {getListFriendSelector} from "../../app/selector";
+import FriendComponent from "./FriendComponent";
+import FriendModel, {FriendConstant} from "./model";
 
-const FriendConstant = {
-    OPTION: {
-        SUGGEST: "suggest", YOUR_FIEND: "friend",
-    }
-}
 
 const styles = StyleSheet.create({
     fullScreen: {
@@ -37,7 +35,7 @@ function Option({callBack, ...props}) {
             ...gStyle.row, alignItems: "flex-start", width: 200, justifyContent: "space-between", ...props.style
         }}>
             <Button
-                title={"Suggestions"}
+                title={"Requested"}
                 buttonStyle={styles.buttonStyle}
                 containerStyle={styles.buttonContainerStyle}
                 onPress={() => runCallBack(FriendConstant.OPTION.SUGGEST)}
@@ -61,75 +59,32 @@ function Option({callBack, ...props}) {
  * @returns {JSX.Element}
  * @constructor
  */
-function FriendComponent({data, option, showFriendInfoCallback, ...props}) {
-    function confirmButtonHandler() {
-        // TODO : Thực hiện call API xác nhận kết bạn ở đây
-    }
-
-    function cancelButtonHandler() {
-        // TODO : Thực hiện call API hủy kết bạn ở chỗ này
-    }
-
-    function showFriendInfo() {
-        if (showFriendInfoCallback) {
-            showFriendInfoCallback(data.uid);
-            return;
-        }
-        ("Show Friend Info Callback is null");
-    }
-
-    return <>
-        <View style={{
-            height: 90, width: "100%", ...gStyle.row, marginBottom: 10, position: "relative",
-        }}>
-            <TouchableHighlight onPress={showFriendInfo} style={{
-                borderRadius: 15
-            }}>
-                <Image
-                    style={{
-                        height: "100%", aspectRatio: 1, borderRadius: 15,
-                    }}
-                    source={{uri: data.avatarUrl}}
-                />
-            </TouchableHighlight>
-            <View style={{
-                flex: 1, ...gStyle.column,
-                alignItems: "flex-start",
-                paddingHorizontal: 5,
-                marginLeft: 10,
-                justifyContent: "space-between"
-            }}>
-                <Text
-                    style={{
-                        fontSize: 24, fontWeight: "bold",
-                    }}
-                >{data.name}</Text>
-                <View style={{
-                    ...gStyle.row, width: "100%", justifyContent: "space-between"
-                }}>
-                    {option === FriendConstant.OPTION.SUGGEST ? <>
-                        <Button
-                            title={"Confirm"} buttonStyle={styles.buttonStyle}
-                            containerStyle={{flex: 10, borderRadius: 10}}/>
-                        <View style={{flex: 1}}/>
-                        <Button title={"Cancel"} buttonStyle={{backgroundColor: "#EEEEEE"}}
-                                containerStyle={{flex: 10, borderRadius: 10}}
-                                titleStyle={{color: 'black'}}/>
-                    </> : <Button title={"Cancel"} buttonStyle={{backgroundColor: "#EEEEEE"}}
-                                  containerStyle={{width: "100%", borderRadius: 10}}
-                                  titleStyle={{color: 'black'}}/>
-                    }
-                </View>
-
-            </View>
-        </View>
-    </>;
-}
 
 export default function Friend() {
     const [option, setOption] = useState(FriendConstant.OPTION.SUGGEST);
     const [isShowFriendProfile, setShowFriendProfile] = useState(false);
-    const [friendInfo, setFriendInfo] = useState(null);
+    let listRequested = [
+        new FriendModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUqK4bvzwptQBDWvVgok2N9PJ5fYIYasm-rQ&usqp=CAU", "Hello My Friend 1", "1239jiowajefojoi3131"),
+        new FriendModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUqK4bvzwptQBDWvVgok2N9PJ5fYIYasm-rQ&usqp=CAU", "Hello My Friend 2", "1239jiowajefojoi3132"),
+        new FriendModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUqK4bvzwptQBDWvVgok2N9PJ5fYIYasm-rQ&usqp=CAU", "Hello My Friend 3", "1239jiowajefojoi3133"),
+        new FriendModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUqK4bvzwptQBDWvVgok2N9PJ5fYIYasm-rQ&usqp=CAU", "Hello My Friend 4", "1239jiowajefojoi3134"),
+        new FriendModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUqK4bvzwptQBDWvVgok2N9PJ5fYIYasm-rQ&usqp=CAU", "Hello My Friend 5", "1239jiowajefojoi3135"),
+        new FriendModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUqK4bvzwptQBDWvVgok2N9PJ5fYIYasm-rQ&usqp=CAU", "Hello My Friend 5", "1239jiowajefojoi3136"),
+    ];
+    let listFriend = useSelector(getListFriendSelector);
+    console.log("listFriend " + JSON.stringify(listFriend));
+
+    /**
+     * @param {FriendConstant.OPTION}
+     * @returns {Object[]}
+     */
+    const getDisplayList = (option) => {
+        if (option === FriendConstant.OPTION.SUGGEST) {
+            return listRequested;
+        } else {
+            return listFriend;
+        }
+    }
 
     function handleChangeOption(/** FriendConstant.OPTION */ value) {
         setOption(value);
@@ -139,12 +94,12 @@ export default function Friend() {
      * @param {string} uid
      */
     function showFriendProfile(uid) {
-        let selectedInfo = friendMock[option].find((/** FriendModel */ element) => element.uid === uid);
-        if (selectedInfo) {
-            (JSON.stringify(selectedInfo));
-            setFriendInfo(selectedInfo);
-            setShowFriendProfile(true);
-        }
+        // let selectedInfo = friendMock[option].find((/** FriendModel */ element) => element.uid === uid);
+        // if (selectedInfo) {
+        //     (JSON.stringify(selectedInfo));
+        //     setFriendInfo(selectedInfo);
+        //     setShowFriendProfile(true);
+        // }
     }
 
     return (<View style={{
@@ -160,14 +115,27 @@ export default function Friend() {
         <ScrollView style={{
             marginTop: 20,
         }}>
-            {friendMock[option].map((element) =>
+            {
+                option === FriendConstant.OPTION.YOUR_FIEND && listFriend.map((element) =>
                 <FriendComponent
                     data={element}
-                    key={element.uid}
+                    key={element._id}
                     option={option}
                     showFriendInfoCallback={showFriendProfile}
                 />
-            )}
+                )
+            }
+            {/*{*/}
+            {/*    option === FriendConstant.OPTION.SUGGEST && listRequested.map((element) =>*/}
+            {/*    <FriendComponent*/}
+            {/*        data={element}*/}
+            {/*        key={element._id}*/}
+            {/*        option={option}*/}
+            {/*        showFriendInfoCallback={showFriendProfile}*/}
+            {/*    />*/}
+            {/*    )*/}
+            {/*}*/}
+
         </ScrollView>
         <BottomSheetProfile
             isVisible={isShowFriendProfile}

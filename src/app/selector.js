@@ -70,8 +70,11 @@ export const userSearchItem = (state) => {
     let listSearch = [];
     console.log(JSON.stringify(Object.keys(searchItems)));
     for (let category of Object.keys(searchItems)) {
-        console.log("Category " + category + " data = " + JSON.stringify(searchItems[category]));
+        console.log("Category " + category + " " + JSON.stringify(searchItems[category]));
+        listSearch.push(...searchItems[category]);
     }
+    // console.log(JSON.stringify(listSearch));
+    return listSearch;
 };
 
 // END USER SELECTOR ===========================================
@@ -145,5 +148,10 @@ export const newFeedSelector = (state) => {
 
 // END POST SELECTOR ===========================================
 
+
+// FRIEND SELECTOR
+export const getListFriendSelector = state => state.friend.listFriend;
+
+// END FRIEND SELECTOR
 
 export const userSeletor = (state) => state.user;

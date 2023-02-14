@@ -19,6 +19,7 @@ const friendSlice = createSlice({
         builder
             .addCase(getListFriend.fulfilled, (state, action) => {
                 friendSliceLog("getListFriend", "payload = " + JSON.stringify(action.payload));
+                state.listFriend = action.payload.data.friends;
             })
             .addCase(getListRequestedFriend.fulfilled, (state, action) => {
                 friendSliceLog("getListRequestedFriend", "payload = " + JSON.stringify(action.payload));

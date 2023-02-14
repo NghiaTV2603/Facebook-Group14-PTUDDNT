@@ -1,10 +1,13 @@
-import {ScrollView, StyleSheet, TextInput, View} from "react-native";
+import {ScrollView, StyleSheet, Text, TextInput, View} from "react-native";
 import gStyle from "../../styles/globalStyle";
 import {useState} from "react";
 import {Button} from "@rneui/base";
 import {getSearchItems} from "../profile/userThunk";
 import {useDispatch, useSelector} from "react-redux";
 import {userSearchItem} from "../../app/selector";
+import BottomSheetProfile from "../share_components/BottomSheetProfile";
+import FriendComponent from "./FriendComponent";
+import {FriendConstant} from "./model";
 
 const styles = StyleSheet.create({
     fullScreen: {
@@ -19,6 +22,8 @@ export default function SearchBottomSheetContent({closeCallBack}) {
     const [keyword, setKeyword] = useState("");
     const dispatch = useDispatch();
     const searchItems = useSelector(userSearchItem);
+
+    const [isShowProfile, setShowProfile] = useState(false);
     const handleChangeText = function (newValue) {
         setKeyword(newValue);
         console.log("Calling");
@@ -26,7 +31,11 @@ export default function SearchBottomSheetContent({closeCallBack}) {
 
     const handleSearch = function () {
         console.log("[Search] calling API with keyword = " + keyword);
-        dispatch(getSearchItems({keyword : keyword}));
+        dispatch(getSearchItems({keyword: keyword}));
+    }
+
+    const handleShowProfile = function () {
+        setShowProfile(true);
     }
 
     return (
@@ -34,17 +43,17 @@ export default function SearchBottomSheetContent({closeCallBack}) {
             <View style={{
                 width: "100%",
                 height: 800,
-                backgroundColor : "white",
-                paddingTop : 10,
-                paddingHorizontal : 10,
+                backgroundColor: "white",
+                paddingTop: 10,
+                paddingHorizontal: 10,
             }}>
                 <View style={{
                     ...styles.titleBar, ...gStyle.row, ...gStyle.flexCenter, justifyContent: "space-between",
                 }}>
                     <Button
-                        icon={{ name: "arrow-left", type: "font-awesome", size: 20, color: "black", }}
-                        buttonStyle={{ backgroundColor: "#EEEEEE", }}
-                        containerStyle={{ height: 40, borderRadius: 10, }}
+                        icon={{name: "arrow-left", type: "font-awesome", size: 20, color: "black",}}
+                        buttonStyle={{backgroundColor: "#EEEEEE",}}
+                        containerStyle={{height: 40, borderRadius: 10,}}
                         title={" "}
                         onPress={closeCallBack}
                     ></Button>
@@ -54,7 +63,7 @@ export default function SearchBottomSheetContent({closeCallBack}) {
                         }}
                         style={{
                             width: 230,
-                            height : 40,
+                            height: 40,
                             marginRight: 10,
                             backgroundColor: '#DEDEDE',
                             borderRadius: 10,
@@ -62,19 +71,50 @@ export default function SearchBottomSheetContent({closeCallBack}) {
                         }}
                     />
                     <Button
-                        icon={{ name: "search", type: "font-awesome", size: 20, color: "black", }}
-                        buttonStyle={{ backgroundColor: "#EEEEEE", }}
-                        containerStyle={{ height: 40, borderRadius: 10, }}
+                        icon={{name: "search", type: "font-awesome", size: 20, color: "black",}}
+                        buttonStyle={{backgroundColor: "#EEEEEE",}}
+                        containerStyle={{height: 40, borderRadius: 10,}}
                         title={" "}
                         onPress={() => {
                             handleSearch();
                         }}
                     ></Button>
                 </View>
-                <ScrollView>
-
+                <ScrollView style={{
+                    flex: 1,
+                    marginTop: 10,
+                }}>
+                    {
+                        searchItems.map((element) => {
+                            if (element.friendStatus) {
+                                return (
+                                    <FriendComponent
+                                        data={element}
+                                        key={element._id}
+                                        option={FriendConstant.OPTION.NON_FRIEND}
+                                        showFriendInfoCallback={handleShowProfile}
+                                    />
+                                )
+                            } else if (!element.content) {
+                                return (<FriendComponent
+                                    data={element}
+                                    key={element._id}
+                                    option={FriendConstant.OPTION.YOUR_FIEND}
+                                    showFriendInfoCallback={handleShowProfile}
+                                />);
+                            } else {
+                                return <Text>This is message</Text>
+                            }
+                        })
+                    }
                 </ScrollView>
             </View>
+            <BottomSheetProfile
+                isVisible={isShowProfile}
+                uid={"TEST_PROFILE"}
+                closeCallback={() => setShowProfile(false)}
+            />
+
         </>
     );
 }
