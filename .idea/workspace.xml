@@ -5,19 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="356cb551-2da5-4d16-83d1-2f1860fa628e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DataView.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/friends/FriendComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataView.json" beforeDir="false" afterPath="$PROJECT_DIR$/DataView.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/selector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/selector.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/components/postSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/components/postSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/friends/Friend.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/Friend.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/friends/FriendMock.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/friends/FriendComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/FriendComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/friends/FriendThunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/FriendThunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/friends/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/Search.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/friends/friendApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/friendApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/friends/friendSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/friendSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/friends/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/profile/components/ProfileAvatar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/components/ProfileAvatar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/profile/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/userSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/share_components/BottomSheetProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/share_components/BottomSheetProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/share_components/TitleBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/share_components/TitleBar.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +35,7 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/screens/friends/Search.jsx" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/screens/friends/Search.jsx" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -42,18 +45,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="ReadonlyStatusHandler">
+    <option name="SHOW_DIALOG" value="false" />
+  </component>
   <component name="RunManager">
     <configuration name="Run" type="ReactNative" factoryName="React Native">
       <node-interpreter value="project" />
@@ -77,6 +83,8 @@
       <option name="presentableId" value="Default" />
       <updated>1676295593952</updated>
       <workItem from="1676295595493" duration="11979000" />
+      <workItem from="1676354756321" duration="300000" />
+      <workItem from="1676355261997" duration="8525000" />
     </task>
     <servers />
   </component>

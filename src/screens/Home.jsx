@@ -38,12 +38,13 @@ function Home() {
         dispatch(getUserInfo());
         dispatch(getNewFeed(null));
         dispatch(getListRequestedFriend(null));
+        dispatch(getListFriend(null));
         setLoad(false);
     }
 
     const getUserNewFeed = function() {
-        dispatch(getNewFeed(null))
-
+        dispatch(getNewFeed(null));
+        dispatch(getUserInfo());
     }
     const getUserInfoApi = function() {
         dispatch(getUserInfo());
@@ -58,6 +59,7 @@ function Home() {
         switch (index) {
             case TAB.HOME:
                 getUserNewFeed();
+                getUserInfoApi();
                 break;
 
             case TAB.CHAT:
@@ -70,6 +72,7 @@ function Home() {
 
             case TAB.PROFILE:
                 getUserInfoApi();
+                getUserNewFeed();
                 break;
         }
         setIndex(index);

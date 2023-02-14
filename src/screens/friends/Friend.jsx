@@ -6,10 +6,12 @@ import {useState} from "react";
 import * as React from "react";
 import TitleBar from "../share_components/TitleBar";
 import BottomSheetProfile from "../share_components/BottomSheetProfile";
-import {useSelector} from "react-redux";
-import {getListFriendSelector} from "../../app/selector";
+import {useDispatch, useSelector} from "react-redux";
+import {getListFriendSelector, getListRequestedFriendSelector} from "../../app/selector";
 import FriendComponent from "./FriendComponent";
 import FriendModel, {FriendConstant} from "./model";
+import {getListFriend, getListRequestedFriend} from "./FriendThunk";
+import {getUserInfoById} from "../profile/userThunk";
 
 
 const styles = StyleSheet.create({
@@ -23,11 +25,12 @@ const styles = StyleSheet.create({
 })
 
 function Option({callBack, ...props}) {
+    const [option, setOption] = useState(FriendConstant.OPTION.SUGGEST);
     function runCallBack(/** FriendConstant.OPTION*/ value) {
-        (value);
         if (callBack !== undefined) {
             callBack(value);
         }
+        setOption(value);
     }
 
     return (<>
@@ -36,12 +39,18 @@ function Option({callBack, ...props}) {
         }}>
             <Button
                 title={"Requested"}
-                buttonStyle={styles.buttonStyle}
+                buttonStyle={{
+                    ...styles.buttonStyle,
+                    backgroundColor: option === FriendConstant.OPTION.SUGGEST ? "red" : "#00A3FF",
+                }}
                 containerStyle={styles.buttonContainerStyle}
                 onPress={() => runCallBack(FriendConstant.OPTION.SUGGEST)}
             />
             <Button
-                buttonStyle={styles.buttonStyle}
+                buttonStyle={{
+                    ...styles.buttonStyle,
+                    backgroundColor : option !== FriendConstant.OPTION.SUGGEST ? "red" : "#00A3FF"
+            }}
                 containerStyle={styles.buttonContainerStyle}
                 title={"Friends"}
                 onPress={() => runCallBack(FriendConstant.OPTION.YOUR_FIEND)}
@@ -63,15 +72,9 @@ function Option({callBack, ...props}) {
 export default function Friend() {
     const [option, setOption] = useState(FriendConstant.OPTION.SUGGEST);
     const [isShowFriendProfile, setShowFriendProfile] = useState(false);
-    let listRequested = [
-        new FriendModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUqK4bvzwptQBDWvVgok2N9PJ5fYIYasm-rQ&usqp=CAU", "Hello My Friend 1", "1239jiowajefojoi3131"),
-        new FriendModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUqK4bvzwptQBDWvVgok2N9PJ5fYIYasm-rQ&usqp=CAU", "Hello My Friend 2", "1239jiowajefojoi3132"),
-        new FriendModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUqK4bvzwptQBDWvVgok2N9PJ5fYIYasm-rQ&usqp=CAU", "Hello My Friend 3", "1239jiowajefojoi3133"),
-        new FriendModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUqK4bvzwptQBDWvVgok2N9PJ5fYIYasm-rQ&usqp=CAU", "Hello My Friend 4", "1239jiowajefojoi3134"),
-        new FriendModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUqK4bvzwptQBDWvVgok2N9PJ5fYIYasm-rQ&usqp=CAU", "Hello My Friend 5", "1239jiowajefojoi3135"),
-        new FriendModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUqK4bvzwptQBDWvVgok2N9PJ5fYIYasm-rQ&usqp=CAU", "Hello My Friend 5", "1239jiowajefojoi3136"),
-    ];
+    let listRequested = useSelector(getListRequestedFriendSelector);
     let listFriend = useSelector(getListFriendSelector);
+    const dispatch = useDispatch()
     console.log("listFriend " + JSON.stringify(listFriend));
 
     /**
@@ -88,6 +91,11 @@ export default function Friend() {
 
     function handleChangeOption(/** FriendConstant.OPTION */ value) {
         setOption(value);
+        if (value === FriendConstant.OPTION.SUGGEST) {
+            dispatch(getListRequestedFriend(null));
+        } else {
+            dispatch(getListFriend(null));
+        }
     }
 
     /**
@@ -98,7 +106,8 @@ export default function Friend() {
         // if (selectedInfo) {
         //     (JSON.stringify(selectedInfo));
         //     setFriendInfo(selectedInfo);
-        //     setShowFriendProfile(true);
+        dispatch(getUserInfoById({userId : uid}));
+        setShowFriendProfile(true);
         // }
     }
 
@@ -125,16 +134,16 @@ export default function Friend() {
                 />
                 )
             }
-            {/*{*/}
-            {/*    option === FriendConstant.OPTION.SUGGEST && listRequested.map((element) =>*/}
-            {/*    <FriendComponent*/}
-            {/*        data={element}*/}
-            {/*        key={element._id}*/}
-            {/*        option={option}*/}
-            {/*        showFriendInfoCallback={showFriendProfile}*/}
-            {/*    />*/}
-            {/*    )*/}
-            {/*}*/}
+            {
+                option === FriendConstant.OPTION.SUGGEST && listRequested.map((element) =>
+                <FriendComponent
+                    data={element}
+                    key={element._id}
+                    option={option}
+                    showFriendInfoCallback={showFriendProfile}
+                />
+                )
+            }
 
         </ScrollView>
         <BottomSheetProfile

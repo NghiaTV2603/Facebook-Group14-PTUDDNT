@@ -23,6 +23,8 @@ export const loginMessageErrorSel = (state) => state.auth.errorMessage;
 // END AUTH ==========================================
 
 // USER SELECTOR ====================================================
+
+export const otherProfile = (state) => state.user.otherProfile;
 export const dataUserMessage = (state) => state.message.listChat;
 export const userAvatarUrl = (state) => {
     let userInfo = state.user;
@@ -53,7 +55,7 @@ export const userInfoSelector = (state) => {
         "birthday",
         "description",
         "phonenumber",
-        "address"
+        "address",
     ];
     for (let key of infoKey) {
         if (userInfo[key]) {
@@ -151,7 +153,10 @@ export const newFeedSelector = (state) => {
 
 // FRIEND SELECTOR
 export const getListFriendSelector = state => state.friend.listFriend;
+export const getListRequestedFriendSelector = state => state.friend.listRequested;
 
 // END FRIEND SELECTOR
 
-export const userSeletor = (state) => state.user;
+export const userSeletor = (state) => {
+    return state.user;
+}

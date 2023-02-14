@@ -5,7 +5,7 @@ import {Button, Icon} from "@rneui/base";
 import * as ImagePicker from "expo-image-picker";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {userAvatarUrl, userCoverAvatarUrl} from "../../../app/selector";
+import {userAvatarUrl, userCoverAvatarUrl, userInfoSelector, userSeletor} from "../../../app/selector";
 import {editUserInfo} from "../userThunk";
 
 let styles = StyleSheet.create({
@@ -131,6 +131,7 @@ let mockBackgroundUrl = "https://scontent.fhan17-1.fna.fbcdn.net/v/t1.6435-9/186
 
 export default function ProfileAvatar() {
     let backgroundUrl = useSelector(userCoverAvatarUrl);
+    let userInfo = useSelector(userSeletor)
     let dispatch = useDispatch();
     const uploadCoverImage = (imageBase64) => {
         let changeCoverImagePayload = {
@@ -149,7 +150,7 @@ export default function ProfileAvatar() {
                     style={{
                         position: "absolute", bottom: -100, left: Dimensions.get("window").width / 2 - 180 / 2,
                     }}
-                    name={"Trần Nhật Minh"}
+                    name={userInfo ? userInfo.username : ""}
                 />
                 <UploadImageButton
                     style={{position: "absolute", bottom: 15, right: 15}}

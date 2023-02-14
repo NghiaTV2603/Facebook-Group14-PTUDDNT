@@ -6,9 +6,10 @@ import {
     getUserInfoById
 } from "./userThunk";
 import {useDispatch} from "react-redux";
+import {otherProfile} from "../../app/selector";
 
 const userSliceLog = function(where, message) {
-    // console.log("[userSlice] - " + where + " - " + message);
+    console.log("[userSlice] - " + where + " - " + message);
 }
 
 
@@ -63,6 +64,8 @@ export const counterSlice = createSlice({
                 state.coverImage = payload.cover_image;
                 state.blocked_diary =  payload.blocked_diary;
                 state.blockedInbox =  payload.blockedInbox;
+                state.id = payload._id;
+                state.friendStatus = "profile";
             })
             .addCase(getUserInfo.fulfilled, (state, action) => {
                 // userSliceLog("getUserInfo", "payload = " + JSON.stringify(action.payload));
@@ -78,6 +81,7 @@ export const counterSlice = createSlice({
                 state.coverImage = payload.cover_image;
                 state.blocked_diary =  payload.blocked_diary;
                 state.blockedInbox =  payload.blockedInbox;
+                state.friendStatus = "profile";
             })
             .addCase(getSearchItems.fulfilled, (state, action) => {
                 // userSliceLog("getSearchItems", "payload = " + JSON.stringify(action.payload));
@@ -85,7 +89,20 @@ export const counterSlice = createSlice({
                 state.searchItems = action.payload.data;
             })
             .addCase(getUserInfoById.fulfilled, (state, action) => {
-
+                userSliceLog("getUserInfoById", "payload = " + JSON.stringify(action.payload));
+                let payload = action.payload.data;
+                state.username =  payload.username;
+                state.gender =  payload.gender;
+                state.birthday =  payload.birthday;
+                state.description =  payload.description;
+                state.address =  payload.address;
+                state.city =  payload.city;
+                state.country =  payload.country;
+                state.avatar =  payload.avatar;
+                state.coverImage = payload.cover_image;
+                state.blocked_diary =  payload.blocked_diary;
+                state.blockedInbox =  payload.blockedInbox;
+                state.friendStatus = payload.friendStatus;
             })
     },
 })
