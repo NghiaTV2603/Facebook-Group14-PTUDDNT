@@ -35,8 +35,6 @@ export default function Message() {
             }
         }
     );
-
-
     useEffect(() => {
         socket.on('message', () => {
             console.log("RECEIVING MESSAGE");
@@ -69,6 +67,9 @@ export default function Message() {
         const messageHandler = (data) => {
             if (data.chatId === dataChat.chatId && data.receiverId === AuthID) {
                 dispatch(fetchMessage(data.chatId))
+            }
+            if (data.chatId) {
+                dispatch(fetchListChat())
             }
         }
 
@@ -124,7 +125,7 @@ export default function Message() {
                                 source={{uri: BASE_SERVER_FILES + e.friend.avatar.fileName}}/>
                         <View style={{marginLeft: 8}}>
                             <Text style={{fontSize: 18}}>{e.friend.username}</Text>
-                            <Text>You: {e.lastMessage.content}</Text>
+                            <Text>{e.lastMessage.senderId === AuthID ? "you : " : ""} {e.lastMessage.content}</Text>
                         </View>
                     </View>
                 </TouchableHighlight>
@@ -153,7 +154,7 @@ export default function Message() {
                         </View>
                         <View style={{paddingTop: 16, height: 600}}>
                             <ScrollView ref={scrollViewRef}
-                                           onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: false })} >
+                                        onContentSizeChange={() => scrollViewRef.current.scrollToEnd({animated: false})}>
                                 {dataChat.length !== 0 && dataChat.data.map((data, index) => (
                                     <View key={data.content + index}>
                                         <View style={{

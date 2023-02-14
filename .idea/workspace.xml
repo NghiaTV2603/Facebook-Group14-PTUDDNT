@@ -5,19 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="356cb551-2da5-4d16-83d1-2f1860fa628e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DataView.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/friends/FriendComponent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/selector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/selector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/friends/Friend.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/Friend.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/friends/FriendMock.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/friends/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/Search.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/friends/friendSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/friendSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/friends/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/share_components/BottomSheetProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/share_components/BottomSheetProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/share_components/TitleBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/share_components/TitleBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/message/Message.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/message/Message.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +21,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/screens/friends/Search.jsx" root0="SKIP_INSPECTION" />
   </component>
@@ -42,18 +35,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Run" type="ReactNative" factoryName="React Native">
       <node-interpreter value="project" />
@@ -85,5 +78,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
