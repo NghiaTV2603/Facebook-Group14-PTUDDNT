@@ -2,7 +2,6 @@ import {StyleSheet, Text, TextInput, View} from "react-native";
 import gStyle from "../../styles/globalStyle";
 import {BottomSheet, Button} from "@rneui/themed";
 import * as React from "react";
-import globalStyle from "../../styles/globalStyle";
 import {useState} from "react";
 import SearchBottomSheetContent from "../friends/Search";
 
