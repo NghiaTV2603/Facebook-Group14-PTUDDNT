@@ -2,7 +2,7 @@ import {ScrollView, StyleSheet, Text, TextInput, View} from "react-native";
 import gStyle from "../../styles/globalStyle";
 import {useState} from "react";
 import {Button} from "@rneui/base";
-import {getSearchItems} from "../profile/userThunk";
+import {getSearchItems, getUserInfoById} from "../profile/userThunk";
 import {useDispatch, useSelector} from "react-redux";
 import {userSearchItem} from "../../app/selector";
 import BottomSheetProfile from "../share_components/BottomSheetProfile";
@@ -34,7 +34,8 @@ export default function SearchBottomSheetContent({closeCallBack}) {
         dispatch(getSearchItems({keyword: keyword}));
     }
 
-    const handleShowProfile = function () {
+    const handleShowProfile = function (uid) {
+        dispatch(getUserInfoById({userId : uid}));
         setShowProfile(true);
     }
 

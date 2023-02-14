@@ -13,7 +13,7 @@ import {Divider} from "@rneui/base";
 import {getUserInfo} from "./userThunk";
 import {useEffect} from "react";
 
-export default function Profile({navigation}) {
+export default function Profile({navigation, showPost}) {
     const data = useSelector(newFeedSelector);
     const userData = useSelector(userSeletor);
 
@@ -21,20 +21,22 @@ export default function Profile({navigation}) {
         <View style={gStyle.fullWidth}>
             <ScrollView>
                 <ProfileAvatar/>
-                <ProfileModify isMyFriend={true} isMyProfile={false}/>
+                {
+                    !showPost && <ProfileModify isMyFriend={userData.friendStatus === "note_friend" ? false : true} isMyProfile={userData.friendStatus === "profile"}/>
+                }
                 <ProfileCounter infos={MockData.profileCounter}/>
                 <ProfileInfo/>
                 <Divider width={1} color={"#EEEEEE"}/>
-                <AddPost />
-                <Divider width={1} color={"#EEEEEE"} style={{marginBottom :  15}}/>
                 {
-                    data.map((element, index) => <Post key={"PROFILE_" + index} dataPost={element}/>)
+                    !showPost && <AddPost/>
                 }
-                <Text>
-                    {
-                        JSON.stringify(userData)
-                    }
-                </Text>
+                {
+
+                    !showPost && <Divider width={1} color={"#EEEEEE"} style={{marginBottom :  15}}/>
+                }
+                {
+                    !showPost && data.map((element, index) => <Post key={"PROFILE_" + index} dataPost={element}/>)
+                }
             </ScrollView>
         </View>
     );

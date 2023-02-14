@@ -1,8 +1,11 @@
 import {BottomSheet, Button} from "@rneui/themed";
-import {ScrollView, View} from "react-native";
+import {ScrollView, View, Text} from "react-native";
 import Profile from "../profile/Profile";
+import {useSelector} from "react-redux";
+import {otherProfile} from "../../app/selector";
 
 export default function BottomSheetProfile({isVisible, uid, closeCallback, ...props}) {
+    const otherUserInfo = useSelector(otherProfile);
 
     const handleCloseBottomSheet = function() {
         if (closeCallback) {
@@ -34,7 +37,7 @@ export default function BottomSheetProfile({isVisible, uid, closeCallback, ...pr
                                 position: "absolute", zIndex: 1000, top: 10, left: 10,
                             }}
                         />
-                        <Profile key={"PROFILE"}/>
+                        <Profile key={"PROFILE"} showPost={true}/>
                     </ScrollView>
                 </View>
             </BottomSheet>
