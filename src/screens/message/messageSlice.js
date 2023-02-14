@@ -56,8 +56,14 @@ const messageSlice = createSlice({
     },
     reducers:{
         addMessage : (state,action) => {
-            state.currentChat.push(action.payload)
-        }
+            state.currentChat.data.push(action.payload)
+        },
+        resetCurrentChat : (state, action) => {
+            state.currentChat = []
+        },
+        addChat : (state, action) => {
+
+        },
     },
     extraReducers: builder => {
         builder.addCase(fetchListChat.fulfilled,(state, action) => {
@@ -89,7 +95,7 @@ export const fetchMessage = createAsyncThunk("message/fetchMessage", async (chat
             console.log("[FetchMessage - Error] " + response.status);
         }
         let json = await response.json();
-        return json.data;
+        return json;
     } catch (err) {
         console.log("[FetchMessage - Error ]" + JSON.stringify(err));
     }
