@@ -5,34 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="356cb551-2da5-4d16-83d1-2f1860fa628e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/friends/FriendThunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/friends/Search.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/friends/friendApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/friends/friendSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/postApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/postApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/userApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/userApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/selector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/selector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/NewFeed/NewFeed.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/NewFeed/NewFeed.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/NewFeed/components/AddPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/NewFeed/components/AddPost.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/components/Comment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/components/Comment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/components/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/components/Post.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/components/postSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/components/postSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/components/postThunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/components/postThunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/friends/Friend.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/Friend.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/login/SignUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/SignUp.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/message/Message.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/message/Message.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/message/messageSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/message/messageSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/profile/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/userSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/profile/userThunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/userThunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/share_components/ImageSlider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/share_components/ImageSlider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/share_components/TitleBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/share_components/TitleBar.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +62,9 @@
       <workItem from="1676295595493" duration="5083000" />
       <workItem from="1676293541137" duration="29000" />
       <workItem from="1676306064095" duration="483000" />
+      <workItem from="1676336453267" duration="602000" />
+      <workItem from="1676357064208" duration="15000" />
+      <workItem from="1676357091356" duration="5369000" />
     </task>
     <servers />
   </component>

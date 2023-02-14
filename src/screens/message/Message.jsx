@@ -8,7 +8,7 @@ import {Avatar, BottomSheet, ListItem} from "@rneui/themed";
 import {useState} from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import {useEffect,useRef} from "react";
+import {useEffect, useRef} from "react";
 import messageSlice, {fetchListChat, fetchMessage} from "./messageSlice";
 import {BASE_SERVER_FILES} from "../../app/constants";
 import {io} from "socket.io-client";
@@ -64,15 +64,20 @@ export default function Message() {
             dispatch(messageSlice.actions.addMessage(data))
         }
     }
-    console.log( "auth ID  : "  + AuthID)
-    useEffect(()=>{
-        socket.on('message',(data)=>{
-            console.log('emit ' + JSON.stringify(data))
-            if(data.chatId===dataChat.chatId && data.receiverId === AuthID ){
-                dispatch(messageSlice.actions.addMessage(data))
+    console.log("auth ID  : " + AuthID)
+    useEffect(() => {
+        const messageHandler = (data) => {
+            if (data.chatId === dataChat.chatId && data.receiverId === AuthID) {
+                dispatch(fetchMessage(data.chatId))
             }
-        })
-    },[socket])
+        }
+
+        socket.on('message', messageHandler)
+
+        return () => {
+            socket.off('message', messageHandler)
+        }
+    }, [socket])
 
     useEffect(() => {
         dispatch(fetchListChat())
@@ -81,6 +86,7 @@ export default function Message() {
     const handleFetchMessage = (chatId) => {
         dispatch(fetchMessage(chatId))
     }
+    const scrollViewRef = useRef()
     return (
         <View>
             <View style={{flexDirection: 'row', padding: 16}}>
@@ -146,8 +152,9 @@ export default function Message() {
                             <Text style={{fontSize: 20, marginLeft: 8}}>{e.length === 0 ? '' : e.friend.username}</Text>
                         </View>
                         <View style={{paddingTop: 16, height: 600}}>
-                            <ScrollView style={{width: "100%"}}>
-                                {dataChat.length !== 0 &&  dataChat.data.map((data, index) => (
+                            <ScrollView ref={scrollViewRef}
+                                           onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: false })} >
+                                {dataChat.length !== 0 && dataChat.data.map((data, index) => (
                                     <View key={data.content + index}>
                                         <View style={{
                                             padding: 8,
