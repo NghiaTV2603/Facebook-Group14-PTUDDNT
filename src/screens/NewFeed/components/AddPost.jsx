@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Image, View, TextInput, Dimensions, ToastAndroid} from "react-native";
 import {Avatar} from "@rneui/themed";
 import Entypo from "react-native-vector-icons/Entypo";
@@ -6,15 +6,24 @@ import {BottomSheet, ListItem, Text} from "@rneui/themed";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import {Button, Divider} from "@rneui/base";
 import {useDispatch, useSelector} from "react-redux";
-import {userAvatarUrl, userNameSelector, userSeletor} from "../../../app/selector";
+import {isLoadingSelector, userAvatarUrl, userNameSelector, userSeletor} from "../../../app/selector";
 import * as ImagePicker from "expo-image-picker";
 import globalStyle from "../../../styles/globalStyle";
 import {createPost} from "../../components/postThunk";
+import postSlice from "../../components/postSlice";
 
 function CreatePost({closeCallback, postId}) {
     const userAvatar = useSelector(userAvatarUrl);
     const userName = useSelector(userNameSelector);
     const dispatch = useDispatch();
+    const isLoading = useSelector(isLoadingSelector);
+    console.log(isLoading);
+
+    useEffect(() => {
+        if (isLoading === false) {
+            closeCallback();
+        }
+    }, [isLoading])
 
     const [status, setStatus] = useState("");
     const [listUploadImage, setListUploadImage] = useState([]);
@@ -152,6 +161,7 @@ function CreatePost({closeCallback, postId}) {
 export default function AddPost({postId}) {
     let userName = useSelector(userNameSelector);
     let userAvatar = useSelector(userAvatarUrl);
+    const dispatch = useDispatch();
 
     const [isVisible, setIsVisible] = useState(false);
     return (
@@ -183,7 +193,10 @@ export default function AddPost({postId}) {
                         borderRadius: 6,
                     }}
                 >
-                    <Text style={{color: "#696969"}} onPress={() => setIsVisible(true)}>
+                    <Text style={{color: "#696969"}} onPress={() => {
+                        dispatch(postSlice.actions.changeLoading());
+                        setIsVisible(true);
+                    }}>
                         What's on your mind ?{" "}
                     </Text>
                     <Entypo name="images" style={{fontSize: 18, color: "grey"}}/>
