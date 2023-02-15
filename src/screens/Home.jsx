@@ -63,6 +63,7 @@ function Home() {
                 break;
 
             case TAB.CHAT:
+                getUserInfoApi();
                 console.log("[Home] - load message API");
                 break;
 
