@@ -58,7 +58,8 @@ export default function Message() {
             });
             const data = {
                 "senderId": AuthID,
-                "content": message
+                "content": message,
+                "createdAt": new Date().toISOString(),
             }
             setMessage(null)
             dispatch(messageSlice.actions.addMessage(data))
