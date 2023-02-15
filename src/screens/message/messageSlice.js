@@ -1,8 +1,6 @@
 import {createSlice,createAsyncThunk} from "@reduxjs/toolkit";
 import MessageApi from "../../api/messageApi";
 
-
-
 const messageSlice = createSlice({
     name:'message',
     initialState:{
@@ -61,9 +59,12 @@ const messageSlice = createSlice({
         resetCurrentChat : (state, action) => {
             state.currentChat = []
         },
-        addChat : (state, action) => {
-
-        },
+        seenMessage : (state, action)=>{
+            const chatSeen = state.listChat.find(chat => chat.chatId === action.payload)
+            if (chatSeen) {
+                chatSeen.seen = true;
+            }
+        }
     },
     extraReducers: builder => {
         builder.addCase(fetchListChat.fulfilled,(state, action) => {

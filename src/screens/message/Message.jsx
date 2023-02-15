@@ -24,6 +24,8 @@ export default function Message() {
     const AuthID = (useSelector(userSeletor)).id
     const [message, setMessage] = useState(null)
     const token = useSelector(authSelector).token;
+    const [hiddenDate, setHiddenDate] = useState(false)
+    const [indexMessage,setIndexMessage] = useState(null)
 
     //test
     const [messageTest, setMessageTest] = useState("");
@@ -60,6 +62,7 @@ export default function Message() {
             }
             setMessage(null)
             dispatch(messageSlice.actions.addMessage(data))
+            // dispatch(fetchMessage(dataChat.chatId))
         }
     }
     console.log("auth ID  : " + AuthID)
@@ -86,6 +89,10 @@ export default function Message() {
 
     const handleFetchMessage = (chatId) => {
         dispatch(fetchMessage(chatId))
+        socket.emit('seenMessage', {
+            "token": token,
+            "chatId": chatId,
+        });
     }
     const scrollViewRef = useRef()
     return (
@@ -123,10 +130,17 @@ export default function Message() {
                         <Avatar size={60}
                                 rounded
                                 source={{uri: BASE_SERVER_FILES + e.friend.avatar.fileName}}/>
-                        <View style={{marginLeft: 8}}>
-                            <Text style={{fontSize: 18}}>{e.friend.username}</Text>
-                            <Text>{e.lastMessage.senderId === AuthID ? "you : " : ""} {e.lastMessage.content}</Text>
+                        <View style={{marginLeft: 8, width: 280}}>
+                            <Text style={{fontSize: 21, fontWeight: !e.seen ? "800" : '700'}}>{e.friend.username}</Text>
+                            <Text style={{
+                                fontWeight: "500",
+                                fontSize: 16,
+                                color: !e.seen ? '#1E90FF' : '#696969'
+                            }}>{e.lastMessage.senderId === AuthID ? "you : " : ""} {e.lastMessage.content}</Text>
                         </View>
+
+                        {!e.seen &&
+                            <View style={{height: 16, width: 16, backgroundColor: '#1E90FF', borderRadius: 16}}/>}
                     </View>
                 </TouchableHighlight>
             ))}
@@ -146,30 +160,50 @@ export default function Message() {
                                       onPress={() => {
                                           setIsVisible(false);
                                           dispatch(messageSlice.actions.resetCurrentChat())
+                                          dispatch(messageSlice.actions.seenMessage(e.chatId))
                                       }}/>
                             <Avatar size={38}
                                     rounded
                                     source={{uri: e.length === 0 ? '' : BASE_SERVER_FILES + e.friend.avatar.fileName}}/>
-                            <Text style={{fontSize: 20, marginLeft: 8}}>{e.length === 0 ? '' : e.friend.username}</Text>
+                            <Text style={{
+                                fontSize: 20,
+                                marginLeft: 8,
+                                fontWeight: "500"
+                            }}>{e.length === 0 ? '' : e.friend.username}</Text>
                         </View>
                         <View style={{paddingTop: 16, height: 725}}>
                             <ScrollView ref={scrollViewRef}
                                         onContentSizeChange={() => scrollViewRef.current.scrollToEnd({animated: false})}>
                                 {dataChat.length !== 0 && dataChat.data.map((data, index) => (
-                                    <View key={data.content + index}>
-                                        <View style={{
-                                            padding: 8,
-                                            borderRadius: 16,
-                                            marginBottom: 8,
-                                            backgroundColor: data.senderId === AuthID ? '#1877F2' : 'grey',
-                                            flexWrap: 'wrap',
-                                            alignSelf: data.senderId === AuthID ? 'flex-end' : 'flex-start'
-                                        }}>
-                                            <Text style={{maxWidth: 250, fontSize: 16, color: 'white'}}>
-                                                {data.content}
-                                            </Text>
+                                        <View  key={data.content + index} style={{marginBottom: 8}}>
+                                    <TouchableHighlight underlayColor="transparent"  onPress={()=>{setHiddenDate(!hiddenDate) ; setIndexMessage(index)}}>
+                                            <View style={{
+                                                padding: 8,
+                                                borderRadius: 16,
+                                                backgroundColor: data.senderId === AuthID ? '#1877F2' : 'grey',
+                                                flexWrap: 'wrap',
+                                                alignSelf: data.senderId === AuthID ? 'flex-end' : 'flex-start'
+                                            }}>
+                                                <Text style={{
+                                                    maxWidth: 250,
+                                                    fontSize: 18,
+                                                    color: 'white',
+                                                    fontWeight: "400"
+                                                }}>
+                                                    {data.content}
+                                                </Text>
+                                            </View>
+                                    </TouchableHighlight>
+                                            <View style={{
+                                                alignSelf: data.senderId === AuthID ? 'flex-end' : 'flex-start',
+                                                paddingLeft: 6,
+                                                paddingRight: 6
+                                            }}>
+                                                {hiddenDate && indexMessage === index &&
+                                                    <Text>{new Date(data.createdAt).getHours() + ":" + new Date(data.createdAt).getMinutes() + " " + new Date(data.createdAt).getDate() + "/" + new Date(data.createdAt).getMonth()}</Text>
+                                                }
+                                            </View>
                                         </View>
-                                    </View>
                                 ))}
                             </ScrollView>
                         </View>
