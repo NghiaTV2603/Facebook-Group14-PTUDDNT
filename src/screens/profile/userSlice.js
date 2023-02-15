@@ -82,6 +82,7 @@ export const counterSlice = createSlice({
                 state.blocked_diary =  payload.blocked_diary;
                 state.blockedInbox =  payload.blockedInbox;
                 state.friendStatus = "profile";
+                state.id = payload._id;
             })
             .addCase(getSearchItems.fulfilled, (state, action) => {
                 // userSliceLog("getSearchItems", "payload = " + JSON.stringify(action.payload));
@@ -103,6 +104,7 @@ export const counterSlice = createSlice({
                 state.blocked_diary =  payload.blocked_diary;
                 state.blockedInbox =  payload.blockedInbox;
                 state.friendStatus = payload.friendStatus;
+                state.id = payload._id;
             })
     },
 })

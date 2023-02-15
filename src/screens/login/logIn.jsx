@@ -7,8 +7,8 @@ import SignUp from "./SignUp";
 import {styles} from './styles';
 
 export default function Login(props) {
-    const [phoneNumber, setPhoneNumber] = useState("0988888888");
-    const [password, setPassword] = useState("05060202");
+    const [phoneNumber, setPhoneNumber] = useState("0947");
+    const [password, setPassword] = useState("Chucthanhlam@1907");
     //const errorMessage = useSelector(loginMessageErrorSel);
     const [errorMessage, setMessageError] = useState({
         phoneNumber: '',
