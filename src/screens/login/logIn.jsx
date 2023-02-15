@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {StyleSheet, Text, TextInput, View, Button} from 'react-native'
 import {useDispatch, useSelector} from "react-redux";
 import {loginWithPhoneNumber} from "./authThunk";
-import {authSelector} from "../../app/selector";
+import {authSelector, loginMessageErrorSel} from "../../app/selector";
 
 export default function Login(props) {
     const [phoneNumber, setPhoneNumber] = useState("0947");
