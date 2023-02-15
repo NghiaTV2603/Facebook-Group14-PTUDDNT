@@ -6,21 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="356cb551-2da5-4d16-83d1-2f1860fa628e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataView.json" beforeDir="false" afterPath="$PROJECT_DIR$/DataView.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/selector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/selector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/components/postSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/components/postSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/friends/Friend.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/Friend.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/friends/FriendComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/FriendComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/friends/FriendThunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/FriendThunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/friends/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/Search.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/friends/friendApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/friendApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/friends/friendSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/friends/friendSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/profile/components/ProfileAvatar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/components/ProfileAvatar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/profile/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/profile/userSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/share_components/BottomSheetProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/share_components/BottomSheetProfile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +19,9 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/screens/friends/Search.jsx" root0="FORCE_HIGHLIGHTING" />
@@ -85,10 +74,22 @@
       <workItem from="1676295595493" duration="11979000" />
       <workItem from="1676354756321" duration="300000" />
       <workItem from="1676355261997" duration="8525000" />
+      <workItem from="1676373886871" duration="598000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
