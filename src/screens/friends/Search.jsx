@@ -104,7 +104,8 @@ export default function SearchBottomSheetContent({closeCallBack}) {
                                     showFriendInfoCallback={handleShowProfile}
                                 />);
                             } else {
-                                return <Text>This is message</Text>
+                                // return <Text>This is message</Text>
+                                return <></>;
                             }
                         })
                     }

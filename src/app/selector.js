@@ -83,6 +83,8 @@ export const userSearchItem = (state) => {
 
 // POST SELECTOR ===============================================
 
+export const isLoadingSelector = state => state.post.isLoading;
+
 export const newFeedSelector = (state) => {
     if (state.post && state.post.newFeed) {
         let response = [];
