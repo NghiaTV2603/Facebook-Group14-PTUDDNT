@@ -14,4 +14,10 @@ MessageApi.getMessage = function (chatId) {
         METHOD_TYPE.GET,
     );
 }
+MessageApi.deleteMessage = function (chatId) {
+    return fetchingData(
+        `chats/deleteChat/${chatId}`,
+        METHOD_TYPE.DELETE,
+    );
+}
 export default MessageApi

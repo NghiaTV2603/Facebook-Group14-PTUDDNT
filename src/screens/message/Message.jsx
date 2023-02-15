@@ -1,7 +1,7 @@
 import * as React from "react";
-import {ScrollView, Text, TextInput, TouchableHighlight, View,ActivityIndicator} from "react-native";
+import {ScrollView, Text, TextInput, TouchableHighlight, View, ActivityIndicator} from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import {Button, Divider, Input} from "@rneui/base";
+import {Button, Divider, Input,Dialog} from "@rneui/base";
 import {useSelector, useDispatch} from "react-redux";
 import {authSelector, dataUserMessage, userSeletor} from "../../app/selector";
 import {Avatar, BottomSheet, ListItem} from "@rneui/themed";
@@ -9,7 +9,7 @@ import {useState} from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import {useEffect, useRef} from "react";
-import messageSlice, {fetchListChat, fetchMessage} from "./messageSlice";
+import messageSlice, {fetchDeleteMessage, fetchListChat, fetchMessage} from "./messageSlice";
 import {BASE_SERVER_FILES} from "../../app/constants";
 import {io} from "socket.io-client";
 import socketIOClient from "socket.io-client"
@@ -25,8 +25,11 @@ export default function Message() {
     const [message, setMessage] = useState(null)
     const token = useSelector(authSelector).token;
     const [hiddenDate, setHiddenDate] = useState(false)
-    const [indexMessage,setIndexMessage] = useState(null)
-
+    const [indexMessage, setIndexMessage] = useState(null)
+    const [visible1, setVisible1] = useState(false);
+    const toggleDialog1 = () => {
+        setVisible1(!visible1);
+    };
     //test
     const [messageTest, setMessageTest] = useState("");
 
@@ -155,32 +158,53 @@ export default function Message() {
             >
                 <ListItem>
                     <View>
-                        <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 8}}>
-                            <Ionicons name={'chevron-back-sharp'}
-                                      style={{fontSize: 32, color: 'blue', marginRight: 8}}
-                                      onPress={() => {
-                                          setIsVisible(false);
-                                          dispatch(messageSlice.actions.resetCurrentChat())
-                                          dispatch(messageSlice.actions.seenMessage(e.chatId))
-                                      }}/>
-                            <Avatar size={38}
-                                    rounded
-                                    source={{uri: e.length === 0 ? '' : BASE_SERVER_FILES + e.friend.avatar.fileName}}/>
-                            <Text style={{
-                                fontSize: 20,
-                                marginLeft: 8,
-                                fontWeight: "500"
-                            }}>{e.length === 0 ? '' : e.friend.username}</Text>
+                        <View style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            marginTop: 8,
+                            justifyContent: 'space-between'
+                        }}>
+                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                <Ionicons name={'chevron-back-sharp'}
+                                          style={{fontSize: 32, color: 'blue', marginRight: 8}}
+                                          onPress={() => {
+                                              setIsVisible(false);
+                                              dispatch(messageSlice.actions.resetCurrentChat())
+                                              dispatch(messageSlice.actions.seenMessage(e.chatId))
+                                          }}/>
+                                <Avatar size={38}
+                                        rounded
+                                        source={{uri: e.length === 0 ? '' : BASE_SERVER_FILES + e.friend.avatar.fileName}}/>
+                                <Text style={{
+                                    fontSize: 20,
+                                    marginLeft: 8,
+                                    fontWeight: "500"
+                                }}>{e.length === 0 ? '' : e.friend.username}</Text>
+                            </View>
+                            <MaterialCommunityIcons name={'delete-alert'} style={{
+                                fontSize: 28,
+                                color: 'red',
+                                marginRight: 4,
+                                marginLeft: 4
+                            }} onPress={()=>{
+                                dispatch(messageSlice.actions.deleteMessage(e.chatId))
+                                dispatch(fetchDeleteMessage(e.chatId))
+                                setIsVisible(false);
+                            }}
+                            />
                         </View>
                         <View style={{paddingTop: 16, height: 725}}>
                             <ScrollView ref={scrollViewRef}
                                         onContentSizeChange={() => scrollViewRef.current.scrollToEnd({animated: false})}>
                                 {dataChat.length === 0 && <View>
-                                    <ActivityIndicator  size="large"/>
+                                    <ActivityIndicator size="large"/>
                                 </View>}
                                 {dataChat.length !== 0 && dataChat.data.map((data, index) => (
-                                        <View  key={data.content + index} style={{marginBottom: 8}}>
-                                    <TouchableHighlight underlayColor="transparent"  onPress={()=>{setHiddenDate(!hiddenDate) ; setIndexMessage(index)}}>
+                                    <View key={data.content + index} style={{marginBottom: 8}}>
+                                        <TouchableHighlight underlayColor="transparent" onPress={() => {
+                                            setHiddenDate(!hiddenDate);
+                                            setIndexMessage(index)
+                                        }}>
                                             <View style={{
                                                 padding: 8,
                                                 borderRadius: 16,
@@ -197,17 +221,17 @@ export default function Message() {
                                                     {data.content}
                                                 </Text>
                                             </View>
-                                    </TouchableHighlight>
-                                            <View style={{
-                                                alignSelf: data.senderId === AuthID ? 'flex-end' : 'flex-start',
-                                                paddingLeft: 6,
-                                                paddingRight: 6
-                                            }}>
-                                                {hiddenDate && indexMessage === index &&
-                                                    <Text>{new Date(data.createdAt).getHours() + ":" + new Date(data.createdAt).getMinutes() + " " + new Date(data.createdAt).getDate() + "/" + new Date(data.createdAt).getMonth()}</Text>
-                                                }
-                                            </View>
+                                        </TouchableHighlight>
+                                        <View style={{
+                                            alignSelf: data.senderId === AuthID ? 'flex-end' : 'flex-start',
+                                            paddingLeft: 6,
+                                            paddingRight: 6
+                                        }}>
+                                            {hiddenDate && indexMessage === index &&
+                                                <Text>{new Date(data.createdAt).getHours() + ":" + new Date(data.createdAt).getMinutes() + " " + new Date(data.createdAt).getDate() + "/" + new Date(data.createdAt).getMonth()}</Text>
+                                            }
                                         </View>
+                                    </View>
                                 ))}
                             </ScrollView>
                         </View>

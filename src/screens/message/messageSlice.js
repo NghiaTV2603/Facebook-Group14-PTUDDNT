@@ -64,6 +64,9 @@ const messageSlice = createSlice({
             if (chatSeen) {
                 chatSeen.seen = true;
             }
+        },
+        deleteMessage : (state, action) => {
+            state.listChat = state.listChat.filter(chat => chat.chatId !== action.payload)
         }
     },
     extraReducers: builder => {
@@ -92,6 +95,19 @@ export const fetchListChat = createAsyncThunk("message/fetchListChat", async () 
 export const fetchMessage = createAsyncThunk("message/fetchMessage", async (chatId)=>{
     try {
         let response = await MessageApi.getMessage(chatId);
+        if (response.status !== 200) {
+            console.log("[FetchMessage - Error] " + response.status);
+        }
+        let json = await response.json();
+        return json;
+    } catch (err) {
+        console.log("[FetchMessage - Error ]" + JSON.stringify(err));
+    }
+})
+
+export const fetchDeleteMessage = createAsyncThunk("message/fetchDeleteMessage",async (chatId) => {
+    try {
+        let response = await MessageApi.deleteMessage(chatId);
         if (response.status !== 200) {
             console.log("[FetchMessage - Error] " + response.status);
         }
