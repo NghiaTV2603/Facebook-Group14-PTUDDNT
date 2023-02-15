@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ScrollView, Text, TextInput, TouchableHighlight, View} from "react-native";
+import {ScrollView, Text, TextInput, TouchableHighlight, View,ActivityIndicator} from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import {Button, Divider, Input} from "@rneui/base";
 import {useSelector, useDispatch} from "react-redux";
@@ -175,6 +175,9 @@ export default function Message() {
                         <View style={{paddingTop: 16, height: 725}}>
                             <ScrollView ref={scrollViewRef}
                                         onContentSizeChange={() => scrollViewRef.current.scrollToEnd({animated: false})}>
+                                {dataChat.length === 0 && <View>
+                                    <ActivityIndicator  size="large"/>
+                                </View>}
                                 {dataChat.length !== 0 && dataChat.data.map((data, index) => (
                                         <View  key={data.content + index} style={{marginBottom: 8}}>
                                     <TouchableHighlight underlayColor="transparent"  onPress={()=>{setHiddenDate(!hiddenDate) ; setIndexMessage(index)}}>
