@@ -10,7 +10,7 @@ export default function SignUp(props) {
     const [errorMessage, setMessageError] = useState({
         phoneNumber : '',
         userName: '',
-        errorRegister : "useSelector to Lấy error đăng kí ko thành công"
+        errorRegister : ""
     });
     const dispatch = useDispatch();
 
